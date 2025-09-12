@@ -30,7 +30,7 @@
   const atLimit = available.length === 0;
   words.forEach(w => {
     if (!w.dataset.pick) {
-      // if unselected, disable only when we're at the limit
+      // if unselected, disable only when at the limit
       if (atLimit) {
         w.classList.add("disabled");
       } else {
