@@ -1,10 +1,10 @@
 body {
     background-color: antiquewhite;
     margin: 0;
-    height: 100vh;                 /* full viewport height */
+    height: 100vh;                 
     display: flex;
-    justify-content: center;       /* horizontal centering */
-    align-items: center;           /* vertical centering */
+    justify-content: center;       
+    align-items: center;   
 }
 
 .rows {
@@ -38,3 +38,58 @@ body {
     text-align: center;
     padding: 2px;
 }
+
+
+
+.button-container {
+  position: fixed;   /* keeps the container pinned */
+  bottom: 20px;
+  right: 20px;
+  display: flex;     /* makes children line up automatically */
+  gap: 10px;         /* space between buttons */
+  z-index: 9999;
+}
+.button-container a {
+  display: inline-block;
+  background-color: #f5f5dc;
+  color: #2b2b2b;
+  font-family: 'Lacquer', system-ui;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-container a:hover {
+  background-color: #fff8dc;
+  transform: scale(1.05);
+}
+
+/* 
+#sourcesbutton{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    background-color: #f5f5dc;  
+    text-decoration: none !important;
+    color: black;         
+    font-family: 'Lacquer', system-ui; 
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 30px;        
+    cursor: pointer;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+}
+
+
+
