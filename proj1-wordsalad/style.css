@@ -1,0 +1,40 @@
+body {
+    background-color: antiquewhite;
+    margin: 0;
+    height: 100vh;                 /* full viewport height */
+    display: flex;
+    justify-content: center;       /* horizontal centering */
+    align-items: center;           /* vertical centering */
+}
+
+.rows {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    text-align: center;            /* optional: center-align words if you want */
+}
+
+
+.rows{ 
+    display:flex; 
+    flex-direction:column; /* stack the 3 rows vertically */
+    gap:.25rem;            /* little vertical spacing */
+    justify-content: center;
+    align-content: center;
+}
+
+.row{ 
+    display:flex;          /* words in a row flow left to right */
+    flex-wrap:wrap;        /* allows wrapping if row is too long */
+    align-items:baseline;  /* keeps words aligned like text */
+    gap:.5rem;             /* spacing between words */
+}
+
+.w{ 
+    line-height:1; 
+    cursor: default;
+    white-space: nowrap;
+    line-height: 1.1;
+    text-align: center;
+    padding: 2px;
+}
