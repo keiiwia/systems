@@ -70,26 +70,11 @@ body {
   transform: scale(1.05);
 }
 
-/* 
-#sourcesbutton{
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 999;
-    background-color: #f5f5dc;  
-    text-decoration: none !important;
-    color: black;         
-    font-family: 'Lacquer', system-ui; 
-    font-size: 16px;
-    font-weight: bold;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 30px;        
-    cursor: pointer;
-    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-
+@media (max-width: 600px) {
+  .button-container {
+    flex-direction: column;  /* stack instead of row */
+    align-items: flex-end;   /* keep them aligned to the right */
+  }
 }
-
 
 
