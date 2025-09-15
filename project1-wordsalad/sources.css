@@ -1,15 +1,23 @@
+/*add media query and size down into just one column w title at the top, size down images to be responsive*/
+
+
 .sourceslayout{
     display: grid;
-    grid-template-columns: [first] 15% [second] 35% [third] 35% [last]15%;
-    grid-template-rows: [firstrow]6% [secondrow]4% [thirdrow]15% [fourthrow]4% [fifthrow]21% [sixthrow]10% [seventhrow]15% [eighthrow]20% [ninthrow]5%;
+    grid-template-columns: 20% repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     height: 100vh;
     width: 100vh;
-    padding-top: 20%;
+    padding-top: 13%;
 }
 
 .grid-item {
   /* border: 1px solid black;  */
   padding: 1em;
+}
+
+#titleheading{
+    grid-column: 1 / 2;
+    grid-row: 1 / 6;
 }
 
 h1{
