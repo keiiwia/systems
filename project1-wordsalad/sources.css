@@ -15,23 +15,30 @@
 
 /* dialog styling */
 
-dialog{
+dialog[open]{
     background-color: blanchedalmond;
     font-family: 'Bellefair', serif; 
     font-size: larger;
     max-width: 70%;
     display: grid;
     grid-template-columns: [firstcol] 40% [secondcol]60%;
+    grid-template-rows: [firstrow];
     gap: 20px;
     padding: 20px;
 }
 
 #opendialog{
-    grid-row: 2 / 3;
+    grid-row: 1 / 2;
     grid-column: 1 / 2;
     font-family: 'Big Shoulders', system-ui;
     font-size: medium;
-    padding-top: 3em;
+    background-color: blanchedalmond;
+    text-align: left;
+    align-self: flex-start;
+}
+
+#opendialog:hover{
+    cursor: pointer;
 }
 
 #closebutton{
@@ -40,6 +47,11 @@ dialog{
     font-family: 'Big Shoulders', system-ui;
     font-size: medium;
     grid-column: 2 / 3;
+    align-self: flex-start;
+}
+
+#closerbutton:hover{
+    cursor: pointer;
 }
 
 
