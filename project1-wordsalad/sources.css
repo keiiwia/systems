@@ -1,6 +1,4 @@
 /*add media query and size down into just one column w title at the top, size down images to be responsive*/
-
-
 .sourceslayout{
     display: grid;
     grid-template-columns: 20% repeat(2, 1fr);
@@ -13,6 +11,44 @@
 .grid-item {
   /* border: 1px solid black;  */
   padding: 1em;
+}
+
+/* dialog styling */
+
+dialog{
+    background-color: blanchedalmond;
+    font-family: 'Bellefair', serif; 
+    font-size: larger;
+    max-width: 70%;
+    display: grid;
+    grid-template-columns: [firstcol] 40% [secondcol]60%;
+    gap: 20px;
+    padding: 20px;
+}
+
+#opendialog{
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    font-family: 'Big Shoulders', system-ui;
+    font-size: medium;
+    padding-top: 3em;
+}
+
+#closebutton{
+    height:30px;
+    background-color: bisque;
+    font-family: 'Big Shoulders', system-ui;
+    font-size: medium;
+    grid-column: 2 / 3;
+}
+
+
+img{
+    align-items: center;
+    width: 100%;
+    height: auto;
+    border: 2px solid black;
+    
 }
 
 #titleheading{
@@ -34,3 +70,4 @@ a:link{
 a:hover{
     color: lightcoral;
 }
+
