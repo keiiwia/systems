@@ -39,8 +39,7 @@ body {
     padding: 2px;
 }
 
-#go{
-  display: inline-block;
+button#go{
   background-color: #ff9673;
   color: #2b2b2b;
   font-family: 'Lacquer', system-ui;
@@ -55,7 +54,7 @@ body {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-#go:disabled{
+button#go:disabled{
   background-color: #a7a796;
   color: #2b2b2b;
   cursor: default;
