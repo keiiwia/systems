@@ -39,7 +39,27 @@ body {
     padding: 2px;
 }
 
+#go{
+  display: inline-block;
+  background-color: #ff9673;
+  color: #2b2b2b;
+  font-family: 'Lacquer', system-ui;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
+#go:disabled{
+  background-color: #a7a796;
+  color: #2b2b2b;
+  cursor: default;
+}
 
 .button-container {
   position: fixed;   /* keeps the container pinned */

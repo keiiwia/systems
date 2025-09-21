@@ -1,0 +1,16 @@
+{
+  "green": [
+    "./images/colors/green/leaf1.jpg",
+    "./images/colors/green/leaf2.jpg",
+    "./images/colors/green/moss.webp"
+  ],
+  "blue": [
+    "./images/blue/water1.jpg",
+    "./images/blue/sky2.jpg",
+    "./images/blue/ink.png"
+  ],
+  "death": [
+    "./images/death/skull.png",
+    "./images/death/crow.jpg"
+  ]
+}

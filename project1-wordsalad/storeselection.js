@@ -1,1 +1,0 @@
-//the misc images should always be centered, always at the same size, no matter what other selections

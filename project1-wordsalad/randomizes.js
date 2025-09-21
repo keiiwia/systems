@@ -4,24 +4,27 @@
   /* PREP STUFF */
     const terms = ["green","blue","RED","Orange","death","pipes","forest","poet","flora","seeking","dog","news"];
 
-  // 1) Wait for fonts to be ready BEFORE making/placing words
-  const families = ["Lobster","Roboto Mono","Pacifico","Playfair Display","Orbitron"];
-  // Ask the browser to load at least one face from each family (normal 400, 1em)
-  await Promise.all(families.map(f => document.fonts.load(`400 1em "${f}"`)));
-  // Also wait for all faces declared on the page
-  await document.fonts.ready;
+    // 1) Wait for fonts to be ready BEFORE making/placing words
+    const families = ["Lobster","Roboto Mono","Pacifico","Playfair Display","Orbitron"];
+    // Ask the browser to load at least one face from each family (normal 400, 1em)
+    await Promise.all(families.map(f => document.fonts.load(`400 1em "${f}"`)));
+    // Also wait for all faces declared on the page
+    await document.fonts.ready;
 
   // font arr
   const fonts = [
     "'Bellefair', serif",
-  "'Big Shoulders', sans-serif",
-  "'Jacquard 24', system-ui",
-  "'Lacquer', system-ui"
+    "'Big Shoulders', sans-serif",
+    "'Jacquard 24', system-ui",
+    "'Lacquer', system-ui"
   ];
   
   const MAX_SELECT = 3;
   const palette = ["#e74c3c", "#2ecc71", "#3498db"]; 
   let available = [0,1,2]; // amt of color indices available
+
+  //selected words, update once every eventlistener triggers
+  let selectedWords = [];
 
   /* START FUNCTIONS */
 
@@ -55,14 +58,15 @@
     //selection
     el.addEventListener('click', () => {
         const has = el.dataset.pick !== undefined;
-
+      
         if (has) {
             // deselect: free its color
             const idx = +el.dataset.pick;
             el.style.color = "";          // remove color
             delete el.dataset.pick;
-            // put color index back (keep list sorted)
-            if (!available.includes(idx)) {
+            selectedWords = selectedWords.filter(w => w !== el.textContent); //filter through which word is chosen
+          // put color index back (keep list sorted)
+          if (!available.includes(idx)) {
             available.push(idx);
             available.sort();
             }
@@ -72,9 +76,13 @@
             const idx = available.shift();      // take next free color
             el.dataset.pick = String(idx);
             el.style.color = palette[idx];
+            selectedWords.push(el.textContent); //push selected word
 
             updateCursorState();
         }
+
+         // enable button only when 3 words are chosen
+        document.getElementById('go').disabled = (selectedWords.length !== 3);
   });
     
     return el;
@@ -96,5 +104,13 @@
     rows[i].appendChild(el);
     rows[i].dataset.w = (widths[i] + w).toString();
   });
+
+
+  // when user is ready, store and go
+  document.getElementById('go').addEventListener('click', () => {
+  localStorage.setItem('selectedWords', JSON.stringify(selectedWords));
+  window.location.href = 'collagepage.html';
+});
+
 })();
 
