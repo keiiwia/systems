@@ -1,0 +1,99 @@
+body {
+    background-color: antiquewhite;
+    margin: 0;
+    height: 100vh;                 
+    display: 100vh;
+    justify-content: center;       
+    align-items: center;   
+}
+
+.rows {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    text-align: center;            /* optional: center-align words if you want */
+}
+
+
+.rows{ 
+    display:flex; 
+    flex-direction:column; /* stack the 3 rows vertically */
+    gap:.25rem;            /* little vertical spacing */
+    justify-content: center;
+    align-content: center;
+}
+
+.row{ 
+    display:flex;          /* words in a row flow left to right */
+    flex-wrap:wrap;        /* allows wrapping if row is too long */
+    align-items:baseline;  /* keeps words aligned like text */
+    gap:.5rem;             /* spacing between words */
+}
+
+.w{ 
+    line-height:1; 
+    cursor: default;
+    white-space: nowrap;
+    line-height: 1.1;
+    text-align: center;
+    padding: 2px;
+}
+
+button#go{
+  background-color: #ff9673;
+  color: #2b2b2b;
+  font-family: 'Lacquer', system-ui;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button#go:disabled{
+  background-color: #a7a796;
+  color: #2b2b2b;
+  cursor: default;
+}
+
+.button-container {
+  position: fixed;   /* keeps the container pinned */
+  bottom: 20px;
+  right: 20px;
+  display: flex;     /* makes children line up automatically */
+  gap: 10px;         /* space between buttons */
+  z-index: 9999;
+}
+.button-container a {
+  display: inline-block;
+  background-color: #f5f5dc;
+  color: #2b2b2b;
+  font-family: 'Lacquer', system-ui;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-container a:hover {
+  background-color: #fff8dc;
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .button-container {
+    flex-direction: column;  /* stack instead of row */
+    align-items: flex-end;   /* keep them aligned to the right */
+  }
+}
+
+

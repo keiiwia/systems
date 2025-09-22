@@ -26,7 +26,7 @@ fetch('images_manifest.json')
 
     //rand img place
     const container = document.querySelector('.randomizingimgs');
-    container.style.position = 'relative';
+    container.style.position = '100vh'; //fix this
     container.style.height = '100vh';
 
     const rint = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -35,8 +35,8 @@ fetch('images_manifest.json')
       const img = document.createElement('img');
       img.src = src;
       img.style.position = 'absolute';
-      img.style.width = rint(8, 24) + 'vw';
-      img.style.transform = `rotate(${rint(-6, 6)}deg)`;
+      img.style.width = rint(12, 50) + 'vw';
+      img.style.transform = `rotate(${rint(-20, 20)}deg)`;
 
       img.addEventListener('load', () => {
         const cw = container.clientWidth;

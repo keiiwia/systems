@@ -1,7 +1,7 @@
 {
   "green": [
-    "./images/colors/green/leaf1.jpg",
-    "./images/colors/green/leaf2.jpg",
+    "./images/colors/green/leaf1.png",
+    "./images/colors/green/leaf2.png",
     "./images/colors/green/moss.png",
     "./images/colors/green/greeneyes.png",
     "./images/colors/green/grape.png",
@@ -49,6 +49,30 @@
     "./images/dog/dog5.png",
     "./images/dog/dog6.png"
 
+  ],
+     "flora": [
+    "./images/flora/hydrangea-flower.png",
+    "./images/flora/lily-flower.png",
+    "./images/flora/lotus-flower.png",
+    "./images/flora/olive-flower.png",
+    "./images/flora/orchid-flower.png",
+    "./images/flora/poppy-flower.png",
+    "./images/flora/rose-flower.png"
+  ],
+    "news": [
+    "./images/news/newsboys.png",
+    "./images/news/camera.png",
+    "./images/news/film.png",
+    "./images/news/newspaper.png",
+    "./images/news/telegram.png",
+    "./images/news/typewriter.png"
+  ],
+    "poet": [
+    "./images/poet/cross.png",
+    "./images/poet/crown.png",
+    "./images/poet/crucifixion.png",
+    "./images/poet/iconography.png",
+    "./images/poet/quillandink.png"
   ],
   "death": [
     "./images/death/virulence.png",
