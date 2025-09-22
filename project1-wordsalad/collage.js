@@ -13,7 +13,7 @@ fetch('images_manifest.json')
     }
 
     // sample images from each word
-    const perWord = 2; // # of img per word
+    const perWord = 4; // # of img per word
     function sample(arr, n) {
       const out = [];
       for (let i = 0; i < n; i++) {

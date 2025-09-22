@@ -15,7 +15,7 @@
     "./images/colors/blue/plums.png",
     "./images/colors/blue/starfish.png"
   ],
-  "red": [
+  "RED": [
     "./images/colors/red/cardinal.png",
     "./images/colors/red/cherries.png",
     "./images/colors/red/ladybug.png",
@@ -33,8 +33,28 @@
     "./images/colors/orangephone.png",
     "./images/colors/orangestone.png"
   ],
+  "pipes": [
+    "./images/pipes/goggles.png",
+    "./images/pipes/industrialpipes.png",
+    "./images/pipes/lamp.png",
+    "./images/pipes/onoffswitch.png",
+    "./images/pipes/pipeconnector.png",
+    "./images/pipes/steampipe.png"
+  ],
+   "dog": [
+    "./images/dog/dog1.png",
+    "./images/dog/dog2.png",
+    "./images/dog/dog3.png",
+    "./images/dog/dog4.png",
+    "./images/dog/dog5.png",
+    "./images/dog/dog6.png"
+
+  ],
   "death": [
+    "./images/death/virulence.png",
     "./images/death/skull.png",
+    "./images/death/openedbody.png",
+    "./images/death/flowerhead.png",
     "./images/death/crow.jpg"
   ]
 }
