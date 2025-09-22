@@ -82,6 +82,10 @@
     "./images/music/violin.png",
     "./images/music/sax.png"
   ],
+  "seeking": [
+    "./images/seeking/hideandseekpic.png",
+    "./images/seeking/magnifyingglass.png"
+  ],
   "death": [
     "./images/death/virulence.png",
     "./images/death/skull.png",
