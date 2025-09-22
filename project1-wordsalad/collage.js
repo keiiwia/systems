@@ -35,7 +35,7 @@ fetch('images_manifest.json')
       const img = document.createElement('img');
       img.src = src;
       img.style.position = 'absolute';
-      img.style.width = rint(12, 50) + 'vw';
+      img.style.width = rint(12, 40) + 'vw';
       img.style.transform = `rotate(${rint(-20, 20)}deg)`;
 
       img.addEventListener('load', () => {

@@ -74,6 +74,14 @@
     "./images/poet/iconography.png",
     "./images/poet/quillandink.png"
   ],
+   "music": [
+    "./images/music/gong.png",
+    "./images/music/piano.png",
+    "./images/music/harp.png",
+    "./images/music/horn.png",
+    "./images/music/violin.png",
+    "./images/music/sax.png"
+  ],
   "death": [
     "./images/death/virulence.png",
     "./images/death/skull.png",

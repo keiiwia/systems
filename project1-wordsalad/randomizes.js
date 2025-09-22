@@ -2,7 +2,7 @@
 (async function(){ //debugged with ai, loading the fonts wasn't working so i needed to async first
   
   /* PREP STUFF */
-    const terms = ["green","blue","RED","Orange","death","pipes","forest","poet","flora","seeking","dog","news"];
+    const terms = ["green","blue","RED","Orange","death","pipes","music","poet","flora","seeking","dog","news"];
 
     // 1) Wait for fonts to be ready BEFORE making/placing words
     const families = ["Lobster","Roboto Mono","Pacifico","Playfair Display","Orbitron"];
