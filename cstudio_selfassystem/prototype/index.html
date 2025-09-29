@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>testing things</title>
+  <style>
+    body, html{ 
+        margin:0; 
+        height:100%; 
+    }
+    #canvas{ 
+        position:relative; 
+        width:100%; 
+        height:100%; 
+        background:#ffffff; 
+    }
+    img{
+      position:absolute;
+      top:50%; left:50%;
+      transform:translate(-10%,-20%);
+      max-width:250px;
+      mix-blend-mode:multiply; 
+    }
+  </style>
+</head>
+<body>
+  <div id="canvas"></div>
+
+  <script>
+    const images = [
+      "./cutoutimages/1.jpg",
+      "./cutoutimages/2.jpg",
+      "./cutoutimages/3.jpg",
+      "./cutoutimages/4.jpg",
+      "./cutoutimages/5.jpg",
+      "./cutoutimages/6.jpg",
+      "./cutoutimages/7.jpg",
+      "./cutoutimages/8.jpg",
+      "./cutoutimages/9.jpg",
+      "./cutoutimages/10.jpg",
+      "./cutoutimages/11.jpg",
+      "./cutoutimages/12.jpg",
+      "./cutoutimages/13.jpg",
+      "./cutoutimages/14.jpg",
+      "./cutoutimages/15.jpg",
+      "./cutoutimages/16.jpg",
+      "./cutoutimages/17.jpg",
+      "./cutoutimages/18.jpg",
+      "./cutoutimages/19.jpg",
+      "./cutoutimages/20.jpg"
+    ];
+
+    const canvas = document.getElementById('canvas');
+    let count = 0;
+
+    function opacity(n) {
+      return Math.max(0.05, 1 / Math.sqrt(n));
+    }
+
+    function randomPosAndStyle(img) {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+
+      // Random position (but not offscreen)
+      const x = Math.random() * (w - 300) + 150;
+      const y = Math.random() * (h - 300) + 150;
+
+      // Random rotation between -6deg and +6deg
+      const rot = (Math.random() * 12 - 6).toFixed(2);
+
+      // Random scale factor between 0.9 and 1.3
+      const scale = 0.9 + Math.random() * 0.4;
+
+      img.style.left = x + "px";
+      img.style.top = y + "px";
+      img.style.transform = `translate(-10%, -10%) rotate(${rot}deg) scale(${scale})`;
+
+      // Bigger base size
+      img.style.maxWidth = "320px"; 
+    }
+
+    function addNext() {
+      if (count >= images.length) return;
+
+      const img = document.createElement('img');
+      img.src = images[count];
+      canvas.appendChild(img);
+      count++;
+
+      randomPosAndStyle(img);
+
+      // update opacity of all
+      const a = opacity(count);
+      canvas.querySelectorAll('img').forEach(el => el.style.opacity = a);
+
+      setTimeout(addNext, 500);
+    }
+
+    addNext();
+
+    // const canvas = document.getElementById('canvas');
+    // let count = 0;
+
+    // function opacity(n) {
+    //   return Math.max(0.05, 1 / Math.sqrt(n));
+    // }
+
+    // function addNext() {
+    //   if (count >= images.length) return;
+    //   const img = document.createElement('img');
+    //   img.src = images[count];
+    //   canvas.appendChild(img);
+    //   count++;
+
+    //   // adjust opacity of all images
+    //   const a = opacity(count);
+    //   canvas.querySelectorAll('img').forEach(el => el.style.opacity = a);
+
+    //   setTimeout(addNext, 500); // next image after 0.5s
+    // }
+
+    // addNext();
+  </script>
+</body>
+</html>
