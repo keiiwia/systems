@@ -14,14 +14,14 @@ export async function loadJSONFile(filePath) {
 }
 
 export function getCategoryFiles(category) {
-  const knownFiles = {
+  const categoryFiles = {
     design: ['design.json', 'bookandmagazinedesign.json', 'japanesegraphicdesign.json', 'logoandidentitydesign.json', 'productdesign.json'],
     fashion: ['asianfashion.json', 'dress.json', 'streetfashion.json', 'womensfashion.json'],
     food: ['cake.json', 'desserts.json', 'fooddisplay.json'],
     illustration: ['characterillustration.json', 'conceptartdrawing.json', 'digitalillustration.json', 'gesturedrawing.json'],
     photography: ['candidphotography.json', 'experimentalphotography.json', 'filmphotography.json', 'streetphotography.json']
   };
-  return knownFiles[category] || [];
+  return categoryFiles[category] || [];
 }
 
 export async function loadAllImages(currentDataType) {
@@ -32,6 +32,7 @@ export async function loadAllImages(currentDataType) {
   const categories = ['design', 'fashion', 'food', 'illustration', 'photography'];
   const allImages = [];
 
+  
   for (const category of categories) {
     try {
       const files = getCategoryFiles(category);
@@ -52,7 +53,7 @@ export async function loadAllImages(currentDataType) {
         }
       }
     } catch (error) {
-      console.warn(`cannot load category ${category}:`, error);
+      console.warn(`Failed to load category ${category}:`, error);
     }
   }
 

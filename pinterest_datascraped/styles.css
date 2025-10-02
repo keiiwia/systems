@@ -5,6 +5,7 @@ body, html{
     height:100%; 
     font-family: "Google Sans Code", monospace;
     overflow: hidden;
+    background-color: antiquewhite;
 }
 
 button, .btn, .select, input, select, label { 
@@ -17,7 +18,7 @@ button, .btn, .select, input, select, label {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: #ffffff;
+  background: rgb(255, 236, 221);
   border-bottom: 1px solid #e5e5e5;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 240px;
@@ -59,22 +60,31 @@ button, .btn, .select, input, select, label {
   display: flex; gap: 8px; cursor: pointer; padding: 2px 0; 
 }
 .sections li span { 
-  width: 20px; color: #777; 
+  width: 20px; color: #777777; 
 }
 .sections li.active { 
   color: #ff6a00; 
 }
 
 .btn {
-  border: 1px solid #ccc;
-  background: #fff;
+  border: 1px solid #cccccc;
+  background: white;
   padding: 6px 10px;
   font-size: 12px;
   border-radius: 4px;
 }
-.btn.active { background: #111; color: #fff; border-color: #111; }
-.select { border: 1px solid #ccc; padding: 6px 10px; border-radius: 4px; font-size: 12px; }
-.center-inline { display: inline-flex; gap: 6px; align-items: center; font-size: 12px; }
+/* ai helped with this lol did not know you could do this */
+.btn.active { 
+  background: black; color: white; border-color: black; 
+}
+
+.select { 
+  border: 1px solid #cccccc; padding: 6px 10px; border-radius: 4px; font-size: 12px; 
+}
+
+.center-inline { 
+  display: inline-flex; gap: 6px; align-items: center; font-size: 12px; 
+}
 
 .center-toggle {
   display: flex;
@@ -88,7 +98,7 @@ button, .btn, .select, input, select, label {
   gap: 8px;
   cursor: pointer;
   font-size: 12px;
-  color: #333;
+  color: #333333;
 }
 
 .toggle-switch input {
@@ -97,12 +107,12 @@ button, .btn, .select, input, select, label {
   height: 0;
 }
 
-.slider {
+/* .slider {
   position: relative;
   display: inline-block;
   width: 40px;
   height: 20px;
-  background-color: #ccc;
+  background-color: #cccccc;
   border-radius: 20px;
   transition: 0.3s;
 }
@@ -116,16 +126,16 @@ button, .btn, .select, input, select, label {
   bottom: 2px;
   background-color: white;
   border-radius: 50%;
-  transition: 0.3s;
-}
-
+  transition: 0.3s; 
+} */
+/* 
 input:checked + .slider {
   background-color: #e91e63;
 }
 
 input:checked + .slider:before {
   transform: translateX(20px);
-}
+} */
 
 .label-text {
   font-weight: 500;
@@ -135,7 +145,7 @@ input:checked + .slider:before {
     position:relative; 
     width:100%; 
     height:100%; 
-    background:#ffffff; 
+    background:white; 
     margin-top: 68px;
 }
 
