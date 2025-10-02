@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pinterest Data Visualization</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>the sum of wholes</h1>
+      <p class="subtitle">Pinterest category amalgams</p>
+    </div>
+
+    <nav class="controls">
+      <div class="row">
+        <button id="algorithmic-btn" class="btn active">algorithmic</button>
+        <button id="personal-btn" class="btn">personal</button>
+      </div>
+      <div class="row">
+        <label class="center-inline">
+          <input type="checkbox" id="center-toggle">
+          <span>center images</span>
+        </label>
+      </div>
+      <div class="row">
+        <button id="start-btn" class="btn">Start</button>
+        <button id="reset-btn" class="btn">Reset</button>
+      </div>
+    </nav>
+
+    <ul class="sections">
+      <li data-cat="design" class="active"><span>01</span> Design</li>
+      <li data-cat="fashion"><span>02</span> Fashion</li>
+      <li data-cat="food"><span>03</span> Food</li>
+      <li data-cat="illustration"><span>04</span> Illustration</li>
+      <li data-cat="photography"><span>05</span> Photography</li>
+    </ul>
+  </header>
+  
+  <div id="canvas"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
