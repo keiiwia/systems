@@ -8,14 +8,15 @@ class PinterestVisualization {
     this.allImages = [];
     this.displayedImages = [];
     this.isAnimating = false;
-    this.count = 0;
+    this.count = 0; // index 0
     this.canvas = document.getElementById('canvas');
-    this.centerMode = false;
+    this.centerMode = false; 
     this.fadeTimers = new Set();
 
     this.initializeEventListeners();
     this.loadData();
   }
+  //ui
   initializeEventListeners() {
     document.getElementById('algorithmic-btn').addEventListener('click', () => this.switchDataType('algorithmic'));
     document.getElementById('personal-btn').addEventListener('click', () => this.switchDataType('personal'));
@@ -39,6 +40,7 @@ class PinterestVisualization {
     }
   }
 
+  //async again
   async loadData() {
     try {
       this.allImages = await loadAllImages(this.currentDataType);
@@ -48,6 +50,7 @@ class PinterestVisualization {
     }
   }
 
+  //dpending on which button is toggled
   switchDataType(dataType) {
     if (dataType === this.currentDataType) return;
     this.currentDataType = dataType;
@@ -60,7 +63,6 @@ class PinterestVisualization {
     this.displayedImages = this.allImages.filter(img => img.category === this.currentCategory);
     this.resetAnimation();
   }
-
   resetAnimation() {
     this.isAnimating = false;
     this.count = 0;
@@ -68,7 +70,6 @@ class PinterestVisualization {
     this.fadeTimers.clear();
     this.canvas.innerHTML = '';
   }
-
   startAnimation() {
     if (this.isAnimating) return;
     if (!this.displayedImages?.length) this.filterAndDisplayImages();
@@ -77,6 +78,7 @@ class PinterestVisualization {
     this.canvas.innerHTML = '';
     this.addNext();
   }
+
 
   addNext() {
     if (!this.isAnimating) return;
@@ -119,6 +121,7 @@ class PinterestVisualization {
     };
   }
 
+  // if center vs rand
   positionImage(img) {
     if (this.centerMode) {
       centerImage(img);
@@ -127,7 +130,6 @@ class PinterestVisualization {
       randomPosAndStyle(img);
     }
   }
-
   scheduleFadeAway(img) {
     const fadeDelay = 2000 + Math.random() * 6000;
     const timer = setTimeout(() => {
@@ -147,6 +149,7 @@ class PinterestVisualization {
     this.fadeTimers.add(timer);
   }
 
+  //rand position again
   repositionAllImages() {
     this.canvas.querySelectorAll('img').forEach(img => {
       img.style.transition = '';
@@ -169,6 +172,7 @@ class PinterestVisualization {
 
 }
 
+//initialize when page loads 
 document.addEventListener('DOMContentLoaded', () => {
   new PinterestVisualization();
 });
