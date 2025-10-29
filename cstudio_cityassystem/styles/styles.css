@@ -1,9 +1,9 @@
 /* Minimal white entry */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { height: 100%; }
-body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing: auto; color: #111; background: #ffffff; }
+body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing: auto; color: #111; background: #ffffff; overflow: hidden; }
 
-.intro { position: fixed; inset: 0; background: #ffffff; display: flex; flex-direction: column; overflow: hidden; }
+.intro { position: fixed; inset: 0; height: 100vh; background: #ffffff; display: flex; flex-direction: column; overflow: hidden; }
 
 .panel { position: absolute; left: 50%; top: calc(45vh + 3vh); transform: translateX(-50%); width: min(800px, 92vw); background: transparent; border: none; box-shadow: none; padding: 8px 10px; text-align: center; }
 .panel h2 { margin: 6px 0 8px; font-size: clamp(28px, 4.2vw, 42px); font-family: "Shadows Into Light", cursive; }

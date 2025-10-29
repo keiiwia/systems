@@ -48,7 +48,11 @@ function back() { if (step > 0) { step -= 1; render(); } }
 function finishIntro() {
     intro.style.transition = 'opacity 500ms ease';
     intro.style.opacity = '0';
-    setTimeout(() => { intro.style.display = 'none'; site.style.display = 'block'; }, 520);
+    setTimeout(() => {
+        intro.style.display = 'none';
+        site.style.display = 'block';
+        document.body.style.overflow = 'auto';
+    }, 520);
 }
 
 nextBtn.addEventListener('click', next);
