@@ -166,11 +166,15 @@ body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing
     padding: 24px;
     background: rgba(123, 179, 255, 0.08);
     border-right: 1px solid #eee;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 5;
 }
 .site-title {
     margin: 0 0 6px;
     font-family: "Shadows Into Light", cursive;
     font-size: clamp(28px, 4.5vw, 44px);
+    line-height: 1.05;
 }
 .site-subtitle {
     margin: 0 0 12px;

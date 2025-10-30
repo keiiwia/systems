@@ -595,7 +595,7 @@
               "teu": 361419
             },
             {
-              "commodity": "Plastics and Articles Thereof",
+              "commodity": "Plastics and Articles",
               "teu": 360910
             },
             {
@@ -605,7 +605,7 @@
           ],
           "exports": [
             {
-              "commodity": "Plastics and Articles Thereof",
+              "commodity": "Plastics and Articles",
               "teu": 82144
             },
             {
@@ -622,7 +622,7 @@
               "teu": 324610
             },
             {
-              "commodity": "Plastics and Articles Thereof",
+              "commodity": "Plastics and Articles",
               "teu": 292747
             },
             {
@@ -632,7 +632,7 @@
           ],
           "exports": [
             {
-              "commodity": "Plastics and Articles Thereof",
+              "commodity": "Plastics and Articles",
               "teu": 76018
             },
             {
@@ -645,7 +645,7 @@
           "total_teu": 3135271,
           "imports": [
             {
-              "commodity": "Plastics and Articles Thereof",
+              "commodity": "Plastics and Articles",
               "teu": 362633
             },
             {
@@ -659,7 +659,7 @@
           ],
           "exports": [
             {
-              "commodity": "Plastics and Articles Thereof",
+            "commodity": "Plastics and Articles",
               "teu": 76015
             },
             {

@@ -110,6 +110,20 @@ function setupHoverSampling() {
         canvasRect = viewEl.getBoundingClientRect();
         viewEl.addEventListener('mousemove', onHoverView);
         viewEl.addEventListener('mouseleave', clearHoverInfo);
+        // Allow scrolling the sidebar while pointer is over the image
+        viewEl.addEventListener('wheel', proxySidebarScroll, { passive: false });
+        // Touch support
+        let lastY = null;
+        viewEl.addEventListener('touchstart', (te) => { if (te.touches && te.touches[0]) lastY = te.touches[0].clientY; }, { passive: true });
+        viewEl.addEventListener('touchmove', (te) => {
+            const sb = document.querySelector('.sidebar');
+            if (!sb || !te.touches || !te.touches[0]) return;
+            const y = te.touches[0].clientY;
+            if (lastY != null) {
+                sb.scrollTop += (lastY - y);
+            }
+            lastY = y;
+        }, { passive: true });
         window.addEventListener('resize', () => { canvasRect = viewEl.getBoundingClientRect(); });
     };
 }
@@ -164,14 +178,29 @@ function showCategoryInfo(categoryNames) {
     if (!SITE_DATA || !select) return;
     const year = select.value;
     const lines = [];
+    const sections = [];
     for (const name of categoryNames) {
         const cat = SITE_DATA.categories[name];
         if (!cat) continue;
         const y = (cat.years || {})[year];
         if (!y) continue;
-        const importsTotal = (y.imports || []).reduce((s, r) => s + (r.teu || 0), 0);
-        const exportsTotal = (y.exports || []).reduce((s, r) => s + (r.teu || 0), 0);
+        const imports = y.imports || [];
+        const exports = y.exports || [];
+        const importsTotal = imports.reduce((s, r) => s + (r.teu || 0), 0);
+        const exportsTotal = exports.reduce((s, r) => s + (r.teu || 0), 0);
         lines.push(`${name}: imports ${importsTotal.toLocaleString()} TEU, exports ${exportsTotal.toLocaleString()} TEU`);
+
+        const impList = imports.map(r => `&bull; ${r.commodity}: ${Number(r.teu || 0).toLocaleString()} TEU`).join('<br>');
+        const expList = exports.map(r => `&bull; ${r.commodity}: ${Number(r.teu || 0).toLocaleString()} TEU`).join('<br>');
+        sections.push(`
+            <div style="margin:8px 0 10px;">
+                <div style="font-weight:600;">${name}</div>
+                <div>Imports (${importsTotal.toLocaleString()} TEU)</div>
+                <div style="margin-left:8px;">${impList || '—'}</div>
+                <div style="margin-top:6px;">Exports (${exportsTotal.toLocaleString()} TEU)</div>
+                <div style="margin-left:8px;">${expList || '—'}</div>
+            </div>
+        `);
     }
     if (infoEl) infoEl.textContent = lines.join(' • ');
 
@@ -180,11 +209,12 @@ function showCategoryInfo(categoryNames) {
     const subEl = document.querySelector('.site-subtitle');
     const descEl = document.querySelector('.site-desc');
     if (titleEl) titleEl.textContent = categoryNames.join(' + ');
-    if (subEl) subEl.textContent = `Year ${year}`;
+    if (subEl) {
+        const annual = SITE_DATA.annual_totals?.[year];
+        subEl.textContent = `Year ${year} — total ${Number(annual || 0).toLocaleString()} TEU`;
+    }
     if (descEl) {
-        // Build a short body with top 2 lines of summary
-        const body = lines.map(l => `• ${l}`).join('<br>');
-        descEl.innerHTML = body;
+        descEl.innerHTML = sections.join('');
     }
 }
 
@@ -198,6 +228,13 @@ function clearHoverInfo() {
     if (titleEl && DEFAULT_TITLE) titleEl.textContent = DEFAULT_TITLE;
     if (subEl && DEFAULT_SUBTITLE) subEl.textContent = DEFAULT_SUBTITLE;
     if (descEl && DEFAULT_DESC) descEl.innerHTML = DEFAULT_DESC;
+}
+
+function proxySidebarScroll(e) {
+    const sb = document.querySelector('.sidebar');
+    if (!sb) return;
+    sb.scrollTop += e.deltaY;
+    e.preventDefault();
 }
 
 
