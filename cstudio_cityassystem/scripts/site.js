@@ -2,6 +2,7 @@ let SITE_DATA = null;
 let DEFAULT_TITLE = '';
 let DEFAULT_SUBTITLE = '';
 let DEFAULT_DESC = '';
+let CURRENT_VIEW = 'bedroom';
 
 async function initYearDropdown() {
     try {
@@ -30,7 +31,7 @@ async function initYearDropdown() {
         select.addEventListener('change', () => {});
         setupHoverSampling();
 
-        // cache defaults for restoring when hover ends
+    // cache defaults for restoring when hover ends
         const titleEl = document.querySelector('.site-title');
         const subEl = document.querySelector('.site-subtitle');
         const descEl = document.querySelector('.site-desc');
@@ -58,6 +59,13 @@ function initViewButtons() {
         btn.className = 'btn-text' + (idx === 0 ? ' is-active' : '');
         if (idx === 0) btn.setAttribute('aria-pressed', 'true');
         btn.textContent = label;
+        btn.addEventListener('click', () => {
+            [...container.querySelectorAll('button')].forEach(b => { b.classList.remove('is-active'); b.removeAttribute('aria-pressed'); });
+            btn.classList.add('is-active'); btn.setAttribute('aria-pressed', 'true');
+            if (idx === 0) switchView('bedroom');
+            else if (idx === 1) switchView('pedestrian');
+            else switchView('satellite');
+        });
         container.appendChild(btn);
     });
     container.style.display = 'flex';
@@ -66,12 +74,14 @@ function initViewButtons() {
 let offscreenCanvas, offscreenCtx, industryImg, canvasRect;
 let consumerCanvas, consumerCtx, consumerImg;
 let foodCanvas, foodCtx, foodImg;
+let otherCanvas, otherCtx, otherImg;
 
 function setupHoverSampling() {
     const view = document.querySelector('.view-canvas');
     if (!view) return;
+    const base = CURRENT_VIEW === 'pedestrian' ? 'assets/pedestrian-view' : 'assets/bedroom-view';
     industryImg = new Image();
-    industryImg.src = 'assets/bedroom-view/industry-layer.png';
+    industryImg.src = `${base}/industry-layer.png`;
     industryImg.crossOrigin = 'anonymous';
     industryImg.onload = () => {
         offscreenCanvas = document.createElement('canvas');
@@ -80,7 +90,7 @@ function setupHoverSampling() {
         offscreenCtx = offscreenCanvas.getContext('2d');
         offscreenCtx.drawImage(industryImg, 0, 0);
         consumerImg = new Image();
-        consumerImg.src = 'assets/bedroom-view/consumer-ecommerce-layer.png';
+        consumerImg.src = `${base}/consumer-ecommerce-layer.png`;
         consumerImg.crossOrigin = 'anonymous';
         consumerImg.onload = () => {
             consumerCanvas = document.createElement('canvas');
@@ -91,7 +101,17 @@ function setupHoverSampling() {
         };
 
         foodImg = new Image();
-        foodImg.src = 'assets/bedroom-view/food-agriculture-layer.png';
+        foodImg.src = `${base}/food-agriculture-layer.png`;
+        otherImg = new Image();
+        otherImg.src = `${base}/other-misc-layer.png`;
+        otherImg.crossOrigin = 'anonymous';
+        otherImg.onload = () => {
+            otherCanvas = document.createElement('canvas');
+            otherCanvas.width = otherImg.naturalWidth;
+            otherCanvas.height = otherImg.naturalHeight;
+            otherCtx = otherCanvas.getContext('2d');
+            otherCtx.drawImage(otherImg, 0, 0);
+        };
         foodImg.crossOrigin = 'anonymous';
         foodImg.onload = () => {
             foodCanvas = document.createElement('canvas');
@@ -123,7 +143,7 @@ function setupHoverSampling() {
 
 function onHoverView(e) {
     if (!offscreenCtx || !canvasRect) return;
-    // Prefer offsetX/Y for robust mapping even with transforms
+    // prefer offsetx/y for robust mapping even with transforms
     const target = e.currentTarget;
     const relX = (e.offsetX) / target.clientWidth;
     const relY = (e.offsetY) / target.clientHeight;
@@ -136,7 +156,7 @@ function onHoverView(e) {
     let isBlue = false;
     if (consumerCtx) {
         const b = consumerCtx.getImageData(imgX, imgY, 1, 1).data;
-        // Looser blue detection: blue dominant over red/green
+        // looser blue detection: blue dominant over red/green
         isBlue = b[3] > 5 && b[2] > 100 && (b[2] - b[1] > 25) && (b[2] - b[0] > 25);
     }
 
@@ -147,12 +167,19 @@ function onHoverView(e) {
         isGreen = g[3] > 5 && g[1] > 100 && (g[1] - g[0] > 25) && (g[1] - g[2] > 25);
     }
 
-    if ((isPink && isBlue) || (isPink && isGreen) || (isBlue && isGreen)) {
+    let isYellow = false;
+    if (otherCtx) {
+        const ypx = otherCtx.getImageData(imgX, imgY, 1, 1).data;
+        isYellow = ypx[3] > 5 && (ypx[0] > 140 && ypx[1] > 140) && (Math.max(ypx[0], ypx[1]) - ypx[2] > 50);
+    }
+
+    if ((isPink && isBlue) || (isPink && isGreen) || (isBlue && isGreen) || (isYellow && (isPink || isBlue || isGreen))) {
         // overlapping regions: show relevant combined info
         const cats = [];
         if (isPink) { cats.push('Industrial / Machinery', 'Construction & Raw Materials'); }
         if (isBlue) { cats.push('Consumer & E-commerce Goods'); }
         if (isGreen) { cats.push('Food & Agriculture'); }
+        if (isYellow) { cats.push('Other / Mixed Freight'); }
         showCategoryInfo(cats);
     } else if (isPink) {
         showCategoryInfo(['Industrial / Machinery', 'Construction & Raw Materials']);
@@ -160,6 +187,8 @@ function onHoverView(e) {
         showCategoryInfo(['Consumer & E-commerce Goods']);
     } else if (isGreen) {
         showCategoryInfo(['Food & Agriculture']);
+    } else if (isYellow) {
+        showCategoryInfo(['Other / Mixed Freight']);
     } else {
         clearHoverInfo();
     }
@@ -197,7 +226,7 @@ function showCategoryInfo(categoryNames) {
     }
     if (infoEl) infoEl.textContent = lines.join(' • ');
 
-    // Populate heading/subtitle/desc
+    // populate heading/subtitle/desc
     const titleEl = document.querySelector('.site-title');
     const subEl = document.querySelector('.site-subtitle');
     const descEl = document.querySelector('.site-desc');
@@ -216,28 +245,30 @@ function showCategoryInfo(categoryNames) {
 function clearHoverInfo() {
     const infoEl = document.getElementById('hover-info');
     if (infoEl) infoEl.textContent = '';
-    // Restore defaults
+    // restore defaults
     const titleEl = document.querySelector('.site-title');
     const subEl = document.querySelector('.site-subtitle');
     const descEl = document.querySelector('.site-desc');
     if (titleEl && DEFAULT_TITLE) titleEl.textContent = DEFAULT_TITLE;
     if (subEl && DEFAULT_SUBTITLE) subEl.textContent = DEFAULT_SUBTITLE;
     if (descEl && DEFAULT_DESC) descEl.innerHTML = DEFAULT_DESC;
-    // Remove theme classes
+    // remove theme classes
     applyThemeForCategories([]);
 }
 
 function applyThemeForCategories(categoryNames) {
     const body = document.body;
-    body.classList.remove('theme-pink', 'theme-blue', 'theme-green');
+    body.classList.remove('theme-pink', 'theme-blue', 'theme-green', 'theme-yellow');
     if (!categoryNames || categoryNames.length === 0) return;
     const hasPink = categoryNames.some(n => n === 'Industrial / Machinery' || n === 'Construction & Raw Materials');
     const hasBlue = categoryNames.includes('Consumer & E-commerce Goods');
     const hasGreen = categoryNames.includes('Food & Agriculture');
-    if (hasPink && !hasBlue && !hasGreen) body.classList.add('theme-pink');
-    else if (hasBlue && !hasPink && !hasGreen) body.classList.add('theme-blue');
-    else if (hasGreen && !hasPink && !hasBlue) body.classList.add('theme-green');
-    // If mixed, keep default colors (no class)
+    const hasYellow = categoryNames.includes('Other / Mixed Freight');
+    if (hasPink && !hasBlue && !hasGreen && !hasYellow) body.classList.add('theme-pink');
+    else if (hasBlue && !hasPink && !hasGreen && !hasYellow) body.classList.add('theme-blue');
+    else if (hasGreen && !hasPink && !hasBlue && !hasYellow) body.classList.add('theme-green');
+    else if (hasYellow && !hasPink && !hasBlue && !hasGreen) body.classList.add('theme-yellow');
+    // if mixed, keep default colors (no class)
 }
 
 function proxySidebarScroll(e) {
@@ -245,6 +276,26 @@ function proxySidebarScroll(e) {
     if (!sb) return;
     sb.scrollTop += e.deltaY;
     e.preventDefault();
+}
+
+function switchView(view) {
+    CURRENT_VIEW = view;
+    const base = view === 'pedestrian' ? 'assets/pedestrian-view' : 'assets/bedroom-view';
+    const vc = document.querySelector('.view-canvas');
+    if (!vc) return;
+    vc.innerHTML = '';
+    const layerNames = ['food-agriculture-layer.png', 'consumer-ecommerce-layer.png', 'industry-layer.png', 'other-misc-layer.png'];
+    let pending = layerNames.length;
+    const tryFinish = () => { pending -= 1; if (pending === 0) setupHoverSampling(); };
+    layerNames.forEach(name => {
+        const src = `${base}/${name}`;
+        const img = new Image();
+        img.className = 'view-layer';
+        img.alt = '';
+        img.onload = () => { vc.appendChild(img); tryFinish(); };
+        img.onerror = () => { tryFinish(); };
+        img.src = src;
+    });
 }
 
 

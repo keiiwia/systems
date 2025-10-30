@@ -2,8 +2,16 @@
 *, *::before, *::after { 
     box-sizing: border-box; 
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing: auto; color: #111; background: #ffffff; overflow: hidden; }
+html, body { 
+    height: 100%; 
+}
+body { 
+    margin: 0; 
+    font-family: "Newsreader", Georgia, serif; 
+    font-optical-sizing: auto; 
+    color: #111; 
+    background: #ffffff; 
+    overflow: hidden; }
 
 /* hide site content until intro completes */
 #site { display: none; }
@@ -195,7 +203,7 @@ body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing
     line-height: 1.45;
 }
 
-/* Theme overrides for sidebar text colors based on hovered category */
+/* theme overrides for sidebar text colors based on hovered category */
 .theme-pink .site-title,
 .theme-pink .site-subtitle,
 .theme-pink .site-desc { color: #b2146d; }
@@ -210,6 +218,12 @@ body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing
 .theme-green .site-subtitle,
 .theme-green .site-desc { color: #0b7a3b; }
 .theme-green .site-note { color: #096233; }
+
+/* yellow for other / mixed freight */
+.theme-yellow .site-title,
+.theme-yellow .site-subtitle,
+.theme-yellow .site-desc { color: #9a7a00; }
+.theme-yellow .site-note { color: #7a6200; }
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -228,13 +242,12 @@ body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing
     overflow: hidden;
 }
 
-/* layered canvas for views */
 .view-canvas {
     position: relative;
     left: 0;
-    width: 100%; /* align to end of aside */
+    width: 100%;
     max-width: 100%;
-    aspect-ratio: 3604 / 2268; /* match source layers: 3604x2268 */
+    aspect-ratio: 3604 / 2268; 
     background: transparent;
     box-shadow: none;
     border-radius: 0;
@@ -255,11 +268,11 @@ body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing
 
 .home-waves {
     position: fixed;
-    left: 24vw; /* start where the sidebar ends */
+    left: 24vw; 
     right: 0;
     bottom: 0;
     height: 140px;
-    z-index: 1; /* behind floating controls */
+    z-index: 1; 
     pointer-events: none;
 }
 .home-trail {
@@ -270,7 +283,6 @@ body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing
 
 
 
-/* year dropdown */
 .year-select {
     position: fixed;
     top: 12px;
@@ -287,13 +299,13 @@ body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing
     display: none;
 }
 
-/* floating view toggle buttons (bottom-right) */
+
 .view-fabs {
     position: fixed;
     right: 16px;
     bottom: 16px;
     z-index: 3;
-    display: none; /* shown after intro */
+    display: none; 
     display: flex;
     flex-direction: row;
     gap: 8px;
