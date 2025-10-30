@@ -39,7 +39,7 @@ async function initYearDropdown() {
         if (subEl) DEFAULT_SUBTITLE = subEl.textContent;
         if (descEl) DEFAULT_DESC = descEl.innerHTML;
     } catch (err) {
-        console.error('Year dropdown init failed', err);
+        console.error('year dropdown init failed', err);
     }
 }
 
@@ -79,6 +79,11 @@ let otherCanvas, otherCtx, otherImg;
 function setupHoverSampling() {
     const view = document.querySelector('.view-canvas');
     if (!view) return;
+    // reset previous contexts so stale layers from another view are not used
+    offscreenCanvas = null; offscreenCtx = null; industryImg = null;
+    consumerCanvas = null; consumerCtx = null; consumerImg = null;
+    foodCanvas = null; foodCtx = null; foodImg = null;
+    otherCanvas = null; otherCtx = null; otherImg = null;
     const base = CURRENT_VIEW === 'pedestrian' ? 'assets/pedestrian-view' : 'assets/bedroom-view';
     industryImg = new Image();
     industryImg.src = `${base}/industry-layer.png`;
@@ -281,8 +286,12 @@ function proxySidebarScroll(e) {
 function switchView(view) {
     CURRENT_VIEW = view;
     const base = view === 'pedestrian' ? 'assets/pedestrian-view' : 'assets/bedroom-view';
-    const vc = document.querySelector('.view-canvas');
+    let vc = document.querySelector('.view-canvas');
     if (!vc) return;
+    // replace node to drop any old listeners bound to it
+    const clone = vc.cloneNode(false);
+    vc.parentNode.replaceChild(clone, vc);
+    vc = clone;
     vc.innerHTML = '';
     const layerNames = ['food-agriculture-layer.png', 'consumer-ecommerce-layer.png', 'industry-layer.png', 'other-misc-layer.png'];
     let pending = layerNames.length;
