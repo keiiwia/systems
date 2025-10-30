@@ -200,10 +200,37 @@ body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing
     gap: 6px;
     margin-top: auto;
 }
+
 .content {
     margin-left: 24vw;
-    padding: 20px;
-    min-height: 100vh;
+    padding: 16px;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* layered canvas for views */
+.view-canvas {
+    position: relative;
+    left: 0;
+    width: 100%; /* align to end of aside */
+    max-width: 100%;
+    aspect-ratio: 3604 / 2268; /* match source layers: 3604x2268 */
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: hidden;
+    transform: scale(1.02);
+    transform-origin: left center;
+    will-change: transform;
+}
+.view-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    pointer-events: none;
 }
 
 .home-waves {
@@ -220,6 +247,8 @@ body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing
     height: 100%;
     display: block;
 }
+
+
 
 /* year dropdown */
 .year-select {

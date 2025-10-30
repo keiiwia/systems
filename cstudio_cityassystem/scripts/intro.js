@@ -1,5 +1,5 @@
 const PANELS = [
-    { title: 'A City is a Multitude of Systems', body: 'economically, productively, and socially' },
+    { title: 'A City is a Multitude of Systems', body: 'economically, productively, and socially (note: this website is for computers only)' },
     { title: 'Scale of Movement', body: 'Millions of TEU (twenty-foot equivalent units, or shipping containers) move annually, linking ports, warehouses, and neighborhoods. this website focuses on the Port of New Jersey and New York, authorized by Port Authority.' },
     { title: 'What is inside the TEUs?', body: 'From food to electronics, containerized cargo shapes daily life and local economies. The data here focuses on the types of goods imported and exported, and the categorical data provided by the Port Authority yearly recap reports.' },
     { title: 'Economic Impact', body: 'The goods imported and exported largely shape the local economy and its relationships within metropolitan life, infrastructure, industry, and labor. Ton-miles, the measurement of movement of one ton of freight for one mile, is used to quantify the economic impact of the port on this site.' },
@@ -51,7 +51,8 @@ function finishIntro() {
     setTimeout(() => {
         intro.style.display = 'none';
         site.style.display = 'block';
-        document.body.style.overflow = 'auto';
+        // Keep viewport constrained; no scrollbar
+        document.body.style.overflow = 'hidden';
         if (typeof initYearDropdown === 'function') initYearDropdown();
         if (typeof initViewButtons === 'function') initViewButtons();
     }, 520);
