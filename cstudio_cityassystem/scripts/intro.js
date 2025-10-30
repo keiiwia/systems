@@ -1,7 +1,7 @@
 const PANELS = [
     { title: 'A City is a Multitude of Systems', body: 'economically, productively, and socially' },
     { title: 'Scale of Movement', body: 'Millions of TEU (twenty-foot equivalent units, or shipping containers) move annually, linking ports, warehouses, and neighborhoods. this website focuses on the Port of New Jersey and New York, authorized by Port Authority.' },
-    { title: 'What is inside the boxes?', body: 'From food to electronics, containerized cargo shapes daily life and local economies. The data here focuses on the types of goods imported and exported, and the categorical data provided by the Port Authority yearly recap reports.' },
+    { title: 'What is inside the TEUs?', body: 'From food to electronics, containerized cargo shapes daily life and local economies. The data here focuses on the types of goods imported and exported, and the categorical data provided by the Port Authority yearly recap reports.' },
     { title: 'Economic Impact', body: 'The goods imported and exported largely shape the local economy and its relationships within metropolitan life, infrastructure, industry, and labor. Ton-miles, the measurement of movement of one ton of freight for one mile, is used to quantify the economic impact of the port on this site.' },
     { title: 'For more information', body: 'Continue to the site and find all recorded data and resources.' }
 ];
@@ -52,6 +52,8 @@ function finishIntro() {
         intro.style.display = 'none';
         site.style.display = 'block';
         document.body.style.overflow = 'auto';
+        const docBtn = document.querySelector('.doc-fab');
+        if (docBtn) docBtn.style.display = 'inline-block';
     }, 520);
 }
 
@@ -90,7 +92,6 @@ function drawAtFraction(f) {
 
     ship.style.transform = `translate(${xPx}px, ${yPx}px) translate(-50%, -50%) rotate(${angleDeg}deg)`;
 
-    // Wave synchronized with ship, ending behind the ship's midpoint
     if (trailLength) {
         const lengthPerPx = trailLength / rect.width;
         const bowGapLen = (ship.getBoundingClientRect().width * 0.5) * lengthPerPx; // half ship width
