@@ -194,6 +194,22 @@ body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing
     font-size: 13px;
     line-height: 1.45;
 }
+
+/* Theme overrides for sidebar text colors based on hovered category */
+.theme-pink .site-title,
+.theme-pink .site-subtitle,
+.theme-pink .site-desc { color: #b2146d; }
+.theme-pink .site-note { color: #8a1057; }
+
+.theme-blue .site-title,
+.theme-blue .site-subtitle,
+.theme-blue .site-desc { color: #0f62fe; }
+.theme-blue .site-note { color: #1b4fd1; }
+
+.theme-green .site-title,
+.theme-green .site-subtitle,
+.theme-green .site-desc { color: #0b7a3b; }
+.theme-green .site-note { color: #096233; }
 .sidebar {
     display: flex;
     flex-direction: column;

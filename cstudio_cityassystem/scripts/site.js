@@ -27,9 +27,7 @@ async function initYearDropdown() {
         }
         select.value = years[years.length - 1];
         select.style.display = 'block';
-        select.addEventListener('change', () => {
-            // refresh info if needed
-        });
+        select.addEventListener('change', () => {});
         setupHoverSampling();
 
         // cache defaults for restoring when hover ends
@@ -65,7 +63,6 @@ function initViewButtons() {
     container.style.display = 'flex';
 }
 
-// Hover-based info from industry layer (pink)
 let offscreenCanvas, offscreenCtx, industryImg, canvasRect;
 let consumerCanvas, consumerCtx, consumerImg;
 let foodCanvas, foodCtx, foodImg;
@@ -82,7 +79,6 @@ function setupHoverSampling() {
         offscreenCanvas.height = industryImg.naturalHeight;
         offscreenCtx = offscreenCanvas.getContext('2d');
         offscreenCtx.drawImage(industryImg, 0, 0);
-        // Load consumer (blue) layer as well
         consumerImg = new Image();
         consumerImg.src = 'assets/bedroom-view/consumer-ecommerce-layer.png';
         consumerImg.crossOrigin = 'anonymous';
@@ -94,7 +90,6 @@ function setupHoverSampling() {
             consumerCtx.drawImage(consumerImg, 0, 0);
         };
 
-        // Load food/agriculture (green) layer
         foodImg = new Image();
         foodImg.src = 'assets/bedroom-view/food-agriculture-layer.png';
         foodImg.crossOrigin = 'anonymous';
@@ -110,9 +105,7 @@ function setupHoverSampling() {
         canvasRect = viewEl.getBoundingClientRect();
         viewEl.addEventListener('mousemove', onHoverView);
         viewEl.addEventListener('mouseleave', clearHoverInfo);
-        // Allow scrolling the sidebar while pointer is over the image
         viewEl.addEventListener('wheel', proxySidebarScroll, { passive: false });
-        // Touch support
         let lastY = null;
         viewEl.addEventListener('touchstart', (te) => { if (te.touches && te.touches[0]) lastY = te.touches[0].clientY; }, { passive: true });
         viewEl.addEventListener('touchmove', (te) => {
@@ -216,6 +209,8 @@ function showCategoryInfo(categoryNames) {
     if (descEl) {
         descEl.innerHTML = sections.join('');
     }
+
+    applyThemeForCategories(categoryNames);
 }
 
 function clearHoverInfo() {
@@ -228,6 +223,21 @@ function clearHoverInfo() {
     if (titleEl && DEFAULT_TITLE) titleEl.textContent = DEFAULT_TITLE;
     if (subEl && DEFAULT_SUBTITLE) subEl.textContent = DEFAULT_SUBTITLE;
     if (descEl && DEFAULT_DESC) descEl.innerHTML = DEFAULT_DESC;
+    // Remove theme classes
+    applyThemeForCategories([]);
+}
+
+function applyThemeForCategories(categoryNames) {
+    const body = document.body;
+    body.classList.remove('theme-pink', 'theme-blue', 'theme-green');
+    if (!categoryNames || categoryNames.length === 0) return;
+    const hasPink = categoryNames.some(n => n === 'Industrial / Machinery' || n === 'Construction & Raw Materials');
+    const hasBlue = categoryNames.includes('Consumer & E-commerce Goods');
+    const hasGreen = categoryNames.includes('Food & Agriculture');
+    if (hasPink && !hasBlue && !hasGreen) body.classList.add('theme-pink');
+    else if (hasBlue && !hasPink && !hasGreen) body.classList.add('theme-blue');
+    else if (hasGreen && !hasPink && !hasBlue) body.classList.add('theme-green');
+    // If mixed, keep default colors (no class)
 }
 
 function proxySidebarScroll(e) {
