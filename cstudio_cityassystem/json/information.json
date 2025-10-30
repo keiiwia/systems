@@ -1,165 +1,840 @@
 {
-    "annual_totals": {
-      "2017": 6710817,
-      "2018": 7179788,
-      "2019": 7471131,
-      "2020": 7585819,
-      "2021": 8985931,
-      "2022": 9493664,
-      "2023": 7810005,
-      "2024": 8698526
-    },
-  
-    "categories": {
-      "Food & Agriculture": {
-        "includes": ["Beverages", "Vegetables, Fruit, Nuts", "Food Waste", "Seeds & Grain", "Woodpulp"],
-        "years": {
-          "2020": {
-            "total_teu": 7585819,
-            "imports": [
-              { "commodity": "Beverages, Spirits & Vinegar", "teu": 222133 },
-              { "commodity": "Vegetables, Fruit, Nuts", "teu": 104399 }
-            ],
-            "exports": [
-              { "commodity": "Seeds & Grain", "teu": 44231 },
-              { "commodity": "Food Waste", "teu": 37207 }
-            ]
-          },
-          "2022": {
-            "total_teu": 9493664,
-            "imports": [
-              { "commodity": "Beverages", "teu": 123014 }
-            ],
-            "exports": [
-              { "commodity": "Woodpulp", "teu": 128745 }
-            ]
-          },
-          
-          "2023": { "total_teu": 7810005, 
+  "annual_totals": {
+    "2017": 6710817,
+    "2018": 7179788,
+    "2019": 7471131,
+    "2020": 7585819,
+    "2021": 8985931,
+    "2022": 9493664,
+    "2023": 7810005,
+    "2024": 8698526
+  },
+  "categories": {
+    "Food & Agriculture": {
+      "includes": [
+        "Beverages",
+        "Vegetables, Fruit, Nuts",
+        "Food Waste",
+        "Seeds & Grain",
+        "Woodpulp"
+      ],
+      "years": {
+        "2020": {
+          "total_teu": 2760654,
           "imports": [
-
-            ], 
-            "exports": [
-
-            ] },
-
-          "2024": { "total_teu": 8698526, 
-          "imports": [
-
-          ], 
+            {
+              "commodity": "Beverages, Spirits & Vinegar",
+              "teu": 222133
+            },
+            {
+              "commodity": "Vegetables, Fruit, Nuts",
+              "teu": 104399
+            }
+          ],
           "exports": [
-
-          ] }
+            {
+              "commodity": "Seeds & Grain",
+              "teu": 44231
+            },
+            {
+              "commodity": "Food Waste",
+              "teu": 37207
+            }
+          ]
+        },
+        "2022": {
+          "total_teu": 3347901,
+          "imports": [
+            {
+              "commodity": "Beverages, Spirits and Vinegar",
+              "teu": 250760
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Food Industry Residues & Waste",
+              "teu": 30180
+            },
+            {
+              "commodity": "Oil Seeds, Grain, Seed, Fruit, Plant",
+              "teu": 28959
+            }
+          ]
+        },
+        "2023": {
+          "total_teu": 2963324,
+          "imports": [
+            {
+              "commodity": "Beverages, Spirits and Vinegar",
+              "teu": 202589
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Food Industry Residues & Waste",
+              "teu": 40969
+            },
+            {
+              "commodity": "Oil Seeds, Grain, Seed, Fruit, Plant",
+              "teu": 26347
+            }
+          ]
+        },
+        "2024": {
+          "total_teu": 3135271,
+          "imports": [
+            {
+              "commodity": "Beverages, Spirits & Vinegar",
+              "teu": 187238
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Food Industry Residues & Waste",
+              "teu": 40977
+            },
+            {
+              "commodity": "Oil Seeds, Grain, Seed, Fruit, Plant",
+              "teu": 26347
+            }
+          ]
+        },
+        "2018": {
+          "total_teu": 7179788,
+          "imports": [
+            {
+              "commodity": "Beverages",
+              "teu": 217703
+            }
+          ],
+          "exports": []
+        },
+        "2019": {
+          "total_teu": 7471131,
+          "imports": [
+            {
+              "commodity": "Beverages",
+              "teu": 9375
+            },
+            {
+              "commodity": "Food Waste / Residue",
+              "teu": 667
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Food Waste & Residue",
+              "teu": 24
+            },
+            {
+              "commodity": "Prepared Fruits & Vegetables",
+              "teu": 15
+            }
+          ]
+        },
+        "2021": {
+          "total_teu": 3125613,
+          "imports": [
+            {
+              "commodity": "Beverages, Spirits & Vinegar",
+              "teu": 292903
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Food Waste",
+              "teu": 51728
+            },
+            {
+              "commodity": "Seeds & Grain",
+              "teu": 49218
+            },
+            {
+              "commodity": "Beverages",
+              "teu": 39661
+            }
+          ]
         }
-      },
-  
-      "Consumer & E-commerce Goods": {
-        "includes": ["Furniture", "Footwear", "Toys & Sporting Goods", "Textiles & Apparel", "Electronics"],
-        "years": {
-          "2020": {
-            "total_teu": 7585819,
-            "imports": [
-              { "commodity": "Furniture", "teu": 481571 },
-              { "commodity": "Electronics", "teu": 163443 }
-            ]
-          },
-          "2022": {
-            "total_teu": 9493664,
-            "imports": [
-              { "commodity": "Furniture", "teu": 263474 },
-              { "commodity": "Footwear", "teu": 86571 },
-              { "commodity": "Toys & Sporting Goods", "teu": 85924 },
-              { "commodity": "Textiles & Apparel", "teu": 78213 }
-            ]
-          },
-          "2023": { "total_teu": 7810005, "imports": [], "exports": [] },
-          "2024": { "total_teu": 8698526, "imports": [], "exports": [] }
+      }
+    },
+    "Consumer & E-commerce Goods": {
+      "includes": [
+        "Furniture",
+        "Footwear",
+        "Toys & Sporting Goods",
+        "Textiles & Apparel",
+        "Electronics"
+      ],
+      "years": {
+        "2020": {
+          "total_teu": 2760654,
+          "imports": [
+            {
+              "commodity": "Furniture",
+              "teu": 481571
+            },
+            {
+              "commodity": "Electronics",
+              "teu": 163443
+            }
+          ],
+          "exports": []
+        },
+        "2022": {
+          "total_teu": 3347901,
+          "imports": [
+            {
+              "commodity": "Furniture",
+              "teu": 598737
+            },
+            {
+              "commodity": "Apparel and Accessories, Knit",
+              "teu": 178537
+            },
+            {
+              "commodity": "Toys, Games & Sporting Equipment",
+              "teu": 143919
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Electronics",
+              "teu": 23387
+            }
+          ]
+        },
+        "2023": {
+          "total_teu": 2963324,
+          "imports": [
+            {
+              "commodity": "Furniture",
+              "teu": 488212
+            },
+            {
+              "commodity": "Apparel and Accessories, Knit",
+              "teu": 120887
+            },
+            {
+              "commodity": "Toys, Games & Sport Equipment",
+              "teu": 112694
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Electronics",
+              "teu": 28930
+            }
+          ]
+        },
+        "2024": {
+          "total_teu": 3135271,
+          "imports": [
+            {
+              "commodity": "Furniture",
+              "teu": 547888
+            },
+            {
+              "commodity": "Toys, Games & Sport Equipment",
+              "teu": 115521
+            }
+          ],
+          "exports": []
+        },
+        "2018": {
+          "total_teu": 7179788,
+          "imports": [
+            {
+              "commodity": "Furniture",
+              "teu": 433137
+            }
+          ],
+          "exports": []
+        },
+        "2019": {
+          "total_teu": 7471131,
+          "imports": [
+            {
+              "commodity": "Furniture",
+              "teu": 18708
+            }
+          ],
+          "exports": []
+        },
+        "2021": {
+          "total_teu": 3125613,
+          "imports": [
+            {
+              "commodity": "Furniture",
+              "teu": 574874
+            },
+            {
+              "commodity": "Electronics",
+              "teu": 227164
+            },
+            {
+              "commodity": "Textiles",
+              "teu": 132874
+            },
+            {
+              "commodity": "Footwear",
+              "teu": 112645
+            }
+          ],
+          "exports": []
         }
-      },
-  
-      "Construction & Raw Materials": {
-        "includes": ["Iron & Steel Articles", "Paper Products", "Wood", "Woodpulp", "Vehicles & Parts"],
-        "years": {
-          "2020": {
-            "total_teu": 7585819,
-            "imports": [
-              { "commodity": "Articles of Iron or Steel", "teu": 122559 },
-              { "commodity": "Paper & Paperboard", "teu": 108693 },
-              { "commodity": "Vehicles & Parts, Etc.", "teu": 105569 }
-            ],
-            "exports": [
-              { "commodity": "Wood", "teu": 71882 },
-              { "commodity": "Vehicles & Parts", "teu": 169943 }
-            ]
-          },
-          "2022": {
-            "total_teu": 9493664,
-            "imports": [
-              { "commodity": "Iron & Steel Articles", "teu": 65342 },
-              { "commodity": "Paper Products", "teu": 59890 },
-              { "commodity": "Vehicles & Parts", "teu": 101776 }
-            ],
-            "exports": []
-          },
-          "2023": { "total_teu": 7810005, "imports": [], "exports": [] },
-          "2024": { "total_teu": 8698526, "imports": [], "exports": [] }
+      }
+    },
+    "Construction & Raw Materials": {
+      "includes": [
+        "Iron & Steel Articles",
+        "Paper Products",
+        "Wood",
+        "Woodpulp",
+        "Vehicles & Parts"
+      ],
+      "years": {
+        "2020": {
+          "total_teu": 2760654,
+          "imports": [
+            {
+              "commodity": "Articles of Iron or Steel",
+              "teu": 122559
+            },
+            {
+              "commodity": "Rubber",
+              "teu": 114377
+            },
+            {
+              "commodity": "Paper & Paperboard",
+              "teu": 108693
+            },
+            {
+              "commodity": "Vehicles & Parts, Etc.",
+              "teu": 105569
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Wood Pulp, Waste Paper",
+              "teu": 199872
+            },
+            {
+              "commodity": "Vehicles & Parts",
+              "teu": 169943
+            },
+            {
+              "commodity": "Wood",
+              "teu": 71882
+            },
+            {
+              "commodity": "Aluminum",
+              "teu": 32397
+            },
+            {
+              "commodity": "Paper & Paperboard",
+              "teu": 30119
+            }
+          ]
+        },
+        "2022": {
+          "total_teu": 3347901,
+          "imports": [
+            {
+              "commodity": "Vehicles & Parts",
+              "teu": 154253
+            },
+            {
+              "commodity": "Articles of Rubber",
+              "teu": 155916
+            },
+            {
+              "commodity": "Articles of Iron or Steel",
+              "teu": 144927
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Vehicles & Parts",
+              "teu": 217946
+            },
+            {
+              "commodity": "Wood Pulp (Waste & Scrap)",
+              "teu": 205704
+            },
+            {
+              "commodity": "Wood and Articles of Wood",
+              "teu": 63176
+            },
+            {
+              "commodity": "Aluminum and Articles Thereof",
+              "teu": 36617
+            },
+            {
+              "commodity": "Iron and Steel",
+              "teu": 24564
+            }
+          ]
+        },
+        "2023": {
+          "total_teu": 2963324,
+          "imports": [
+            {
+              "commodity": "Vehicles & Parts",
+              "teu": 147828
+            },
+            {
+              "commodity": "Articles of Rubber",
+              "teu": 131997
+            },
+            {
+              "commodity": "Articles of Iron or Steel",
+              "teu": 121862
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Vehicles & Parts",
+              "teu": 265936
+            },
+            {
+              "commodity": "Wood Pulp (Waste & Scrap)",
+              "teu": 205716
+            },
+            {
+              "commodity": "Wood and Articles of Wood",
+              "teu": 58036
+            },
+            {
+              "commodity": "Aluminum and Articles Thereof",
+              "teu": 36781
+            },
+            {
+              "commodity": "Iron and Steel",
+              "teu": 28306
+            }
+          ]
+        },
+        "2024": {
+          "total_teu": 3135271,
+          "imports": [
+            {
+              "commodity": "Vehicles & Parts",
+              "teu": 167761
+            },
+            {
+              "commodity": "Articles of Iron or Steel",
+              "teu": 140984
+            },
+            {
+              "commodity": "Articles of Rubber",
+              "teu": 134963
+            },
+            {
+              "commodity": "Paper & Paperboard",
+              "teu": 124474
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Vehicles & Parts",
+              "teu": 265954
+            },
+            {
+              "commodity": "Wood Pulp (Waste & Scrap)",
+              "teu": 205705
+            },
+            {
+              "commodity": "Wood and Articles of Wood",
+              "teu": 58043
+            },
+            {
+              "commodity": "Aluminum and Articles Thereof",
+              "teu": 36770
+            },
+            {
+              "commodity": "Iron and Steel",
+              "teu": 28316
+            }
+          ]
+        },
+        "2018": {
+          "total_teu": 7179788,
+          "imports": [
+            {
+              "commodity": "Plastics",
+              "teu": 248127
+            },
+            {
+              "commodity": "Vehicles & Parts",
+              "teu": 509391
+            }
+          ],
+          "exports": []
+        },
+        "2019": {
+          "total_teu": 7471131,
+          "imports": [
+            {
+              "commodity": "Wood Pulp",
+              "teu": 9375
+            },
+            {
+              "commodity": "Vehicle Parts",
+              "teu": 8958
+            },
+            {
+              "commodity": "Wood & Articles of Wood",
+              "teu": 4167
+            },
+            {
+              "commodity": "Paper & Paperboard",
+              "teu": 3250
+            },
+            {
+              "commodity": "Iron & Steel",
+              "teu": 1458
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Wood Pulp",
+              "teu": 108
+            },
+            {
+              "commodity": "Vehicles & Parts",
+              "teu": 21
+            },
+            {
+              "commodity": "Paper & Paperboard",
+              "teu": 38
+            },
+            {
+              "commodity": "Aluminum",
+              "teu": 35
+            },
+            {
+              "commodity": "Rubber",
+              "teu": 20
+            }
+          ]
+        },
+        "2021": {
+          "total_teu": 3125613,
+          "imports": [
+            {
+              "commodity": "Articles of Iron or Steel",
+              "teu": 177098
+            },
+            {
+              "commodity": "Rubber",
+              "teu": 155294
+            },
+            {
+              "commodity": "Paper & Paperboard",
+              "teu": 136590
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Wood Pulp",
+              "teu": 203870
+            },
+            {
+              "commodity": "Paper & Paperboard",
+              "teu": 141234
+            },
+            {
+              "commodity": "Vehicles & Parts",
+              "teu": 62456
+            },
+            {
+              "commodity": "Aluminum",
+              "teu": 59873
+            }
+          ]
         }
-      },
-  
-      "Industrial / Machinery": {
-        "includes": ["Appliances, Machinery & Parts", "Machinery", "Chemicals", "Plastics", "Rubber"],
-        "years": {
-          "2020": {
-            "total_teu": 7585819,
-            "imports": [
-              { "commodity": "Machinery & Parts", "teu": 299763 },
-              { "commodity": "Plastics", "teu": 266962 },
-              { "commodity": "Rubber", "teu": 114377 }
-            ],
-            "exports": [
-              { "commodity": "Plastics", "teu": 91248 },
-              { "commodity": "Machinery & Parts", "teu": 63711 },
-              { "commodity": "Chemicals", "teu": 78412 }
-            ]
-          },
-          "2022": {
-            "total_teu": 9493664,
-            "imports": [
-              { "commodity": "Appliances, Machinery & Parts", "teu": 244325 },
-              { "commodity": "Plastics & Articles Thereof", "teu": 112894 }
-            ],
-            "exports": [
-              { "commodity": "Machinery", "teu": 82657 },
-              { "commodity": "Chemicals", "teu": 78412 }
-            ]
-          },
-          "2023": { "total_teu": 7810005, "imports": [], "exports": [] },
-          "2024": { "total_teu": 8698526, "imports": [], "exports": [] }
+      }
+    },
+    "Industrial / Machinery": {
+      "includes": [
+        "Appliances, Machinery & Parts",
+        "Machinery",
+        "Chemicals",
+        "Plastics",
+        "Rubber"
+      ],
+      "years": {
+        "2020": {
+          "total_teu": 2760654,
+          "imports": [
+            {
+              "commodity": "Machinery & Parts",
+              "teu": 299763
+            },
+            {
+              "commodity": "Plastics",
+              "teu": 266962
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Plastics",
+              "teu": 91248
+            },
+            {
+              "commodity": "Machinery & Parts",
+              "teu": 63711
+            }
+          ]
+        },
+        "2022": {
+          "total_teu": 3347901,
+          "imports": [
+            {
+              "commodity": "Appliances, Machinery & Parts",
+              "teu": 361419
+            },
+            {
+              "commodity": "Plastics and Articles Thereof",
+              "teu": 360910
+            },
+            {
+              "commodity": "Electric Machinery & Parts",
+              "teu": 225843
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Plastics and Articles Thereof",
+              "teu": 82144
+            },
+            {
+              "commodity": "Appliances, Machinery & Parts",
+              "teu": 60003
+            }
+          ]
+        },
+        "2023": {
+          "total_teu": 2963324,
+          "imports": [
+            {
+              "commodity": "Appliances, Machinery & Parts",
+              "teu": 324610
+            },
+            {
+              "commodity": "Plastics and Articles Thereof",
+              "teu": 292747
+            },
+            {
+              "commodity": "Electric Machinery & Parts",
+              "teu": 199979
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Plastics and Articles Thereof",
+              "teu": 76018
+            },
+            {
+              "commodity": "Appliances, Machinery & Parts",
+              "teu": 52880
+            }
+          ]
+        },
+        "2024": {
+          "total_teu": 3135271,
+          "imports": [
+            {
+              "commodity": "Plastics and Articles Thereof",
+              "teu": 362633
+            },
+            {
+              "commodity": "Nuclear Reactors, Boilers & Parts",
+              "teu": 334938
+            },
+            {
+              "commodity": "Electric Machinery & Parts",
+              "teu": 198896
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Plastics and Articles Thereof",
+              "teu": 76015
+            },
+            {
+              "commodity": "Nuclear Reactors, Boilers & Parts",
+              "teu": 52916
+            },
+            {
+              "commodity": "Electric Machinery & Parts",
+              "teu": 28932
+            }
+          ]
+        },
+        "2018": {
+          "total_teu": 7179788,
+          "imports": [
+            {
+              "commodity": "Chemicals",
+              "teu": 21542
+            },
+            {
+              "commodity": "Machinery & Appliances",
+              "teu": 290222
+            }
+          ],
+          "exports": []
+        },
+        "2019": {
+          "total_teu": 7471131,
+          "imports": [
+            {
+              "commodity": "Machinery & Appliances",
+              "teu": 12083
+            },
+            {
+              "commodity": "Plastics",
+              "teu": 10542
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Plastics",
+              "teu": 85
+            },
+            {
+              "commodity": "Machinery & Parts",
+              "teu": 73
+            },
+            {
+              "commodity": "Chemicals",
+              "teu": 15
+            }
+          ]
+        },
+        "2021": {
+          "total_teu": 3125613,
+          "imports": [
+            {
+              "commodity": "Machinery & Appliances",
+              "teu": 284311
+            },
+            {
+              "commodity": "Plastics",
+              "teu": 207155
+            }
+          ],
+          "exports": [
+            {
+              "commodity": "Plastics",
+              "teu": 108695
+            },
+            {
+              "commodity": "Machinery & Parts",
+              "teu": 75380
+            }
+          ]
         }
-      },
-  
-      "Other / Mixed Freight": {
-        "includes": ["Wastepaper", "Plastic Scraps", "Woodpulp / Wastepaper", "Special Classification"],
-        "years": {
-          "2020": {
-            "total_teu": 7585819,
-            "exports": [
-              { "commodity": "Wood Pulp / Waste Paper", "teu": 199872 },
-              { "commodity": "Plastic Scraps", "teu": 96784 },
-              { "commodity": "Special Classification", "teu": 30575 }
-            ]
-          },
-          "2022": {
-            "total_teu": 9493664,
-            "exports": [
-              { "commodity": "Wastepaper", "teu": 175432 },
-              { "commodity": "Plastic Scraps", "teu": 96784 }
-            ]
-          },
-          "2023": { "total_teu": 7810005, "imports": [], "exports": [] },
-          "2024": { "total_teu": 8698526, "imports": [], "exports": [] }
+      }
+    },
+    "Other / Mixed Freight": {
+      "includes": [
+        "Wastepaper",
+        "Plastic Scraps",
+        "Woodpulp / Wastepaper",
+        "Special Classification"
+      ],
+      "years": {
+        "2020": {
+          "total_teu": 2760654,
+          "imports": [],
+          "exports": [
+            {
+              "commodity": "Special Classification",
+              "teu": 30575
+            }
+          ]
+        },
+        "2022": {
+          "total_teu": 3347901,
+          "imports": [],
+          "exports": []
+        },
+        "2023": {
+          "total_teu": 2963324,
+          "imports": [],
+          "exports": []
+        },
+        "2024": {
+          "total_teu": 3135271,
+          "imports": [],
+          "exports": []
+        },
+        "2018": {
+          "total_teu": 7179788,
+          "imports": [
+            {
+              "commodity": "Special Classification",
+              "teu": 1491916
+            }
+          ],
+          "exports": []
+        },
+        "2019": {
+          "total_teu": 7471131,
+          "imports": [],
+          "exports": []
+        },
+        "2021": {
+          "total_teu": 3125613,
+          "imports": [],
+          "exports": [
+            {
+              "commodity": "Special Classification",
+              "teu": 32590
+            }
+          ]
         }
       }
     }
+  },
+  "derived_teu_estimates": {
+    "2019": {
+      "imports_total": 78583,
+      "exports_total": 434,
+      "total_teu_estimate": 79017,
+      "method": "Converted from 'thousand metric tons' using TEUs = (kmt * 1000) / 24"
+    },
+    "2020": {
+      "imports_total": 1989469,
+      "exports_total": 771185,
+      "total_teu_estimate": 2760654,
+      "method": "From Port of NY/NJ 2020 PDF tables (TEU values from source)"
+    },
+    "2021": {
+      "imports_total": 2300908,
+      "exports_total": 824705,
+      "total_teu_estimate": 3125613,
+      "method": "From Port of NY/NJ 2021 PDF tables (TEU values from source)"
+    },
+    "2022": {
+      "imports_total": 2575221,
+      "exports_total": 772680,
+      "total_teu_estimate": 3347901,
+      "method": "From Port of NY/NJ 2022 PDF tables (TEU values from source)"
+    },
+    "2023": {
+      "imports_total": 2143405,
+      "exports_total": 819919,
+      "total_teu_estimate": 2963324,
+      "method": "From Port of NY/NJ 2023 PDF tables (TEU values from source)"
+    },
+    "2024": {
+      "imports_total": 2315296,
+      "exports_total": 819975,
+      "total_teu_estimate": 3135271,
+      "method": "From Port of NY/NJ 2024 PDF tables (TEU values from source)"
+    }
   }
-  
+}

@@ -37,7 +37,7 @@ function initViewButtons() {
         document.body.appendChild(container);
     }
     container.innerHTML = '';
-    const labels = ['My Bedroom', 'Pedestrian View', 'Of NYC'];
+    const labels = ['My Bedroom', 'Pedestrian View', 'Satellite View'];
     labels.forEach((label, idx) => {
         const btn = document.createElement('button');
         btn.type = 'button';
