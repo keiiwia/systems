@@ -1,40 +1,228 @@
-/* Minimal white entry */
-*, *::before, *::after { box-sizing: border-box; }
+
+*, *::before, *::after { 
+    box-sizing: border-box; 
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing: auto; color: #111; background: #ffffff; overflow: hidden; }
 
-.intro { position: fixed; inset: 0; height: 100vh; background: #ffffff; display: flex; flex-direction: column; overflow: hidden; }
+/* hide site content until intro completes */
+#site { display: none; }
 
-.panel { position: absolute; left: 50%; top: calc(45vh + 3vh); transform: translateX(-50%); width: min(800px, 92vw); background: transparent; border: none; box-shadow: none; padding: 8px 10px; text-align: center; }
-.panel h2 { margin: 6px 0 8px; font-size: clamp(28px, 4.2vw, 42px); font-family: "Shadows Into Light", cursive; }
-.panel p { margin: 0; line-height: 1.55; font-size: clamp(14px, 1.9vw, 17px); color: #2a2a2a; }
+.intro {
+    position: fixed;
+    inset: 0;
+    height: 100vh;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
 
-.controls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 12px; }
-.buttons { display: flex; gap: 10px; }
-.btn-text, .btn-primary, .btn-secondary, button { appearance: none; border: 0; border-radius: 0; background: transparent; padding: 6px 10px; cursor: pointer; font-family: "Shadows Into Light", cursive; font-weight: 400; font-size: clamp(16px, 2.2vw, 20px); color: #0f62fe; text-decoration: underline wavy #0f62fe; text-underline-offset: 3px; }
-.btn-primary { color: #0f62fe; text-decoration-color: #0f62fe; }
-.btn-secondary { color: #6aa6ff; text-decoration-color: #6aa6ff; }
-.btn-text { color: #7bb3ff; text-decoration-color: #7bb3ff; padding: 6px 8px; }
-.btn-text:hover, .btn-primary:hover, .btn-secondary:hover, button:hover { opacity: .85; }
+.panel {
+    position: absolute;
+    left: 50%;
+    top: calc(45vh + 3vh);
+    transform: translateX(-50%);
+    width: min(800px, 92vw);
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 8px 10px;
+    text-align: center;
+}
+.panel h2 {
+    margin: 6px 0 8px;
+    font-size: clamp(28px, 4.2vw, 42px);
+    font-family: "Shadows Into Light", cursive;
+}
+.panel p {
+    margin: 0;
+    line-height: 1.55;
+    font-size: clamp(14px, 1.9vw, 17px);
+    color: #2a2a2a;
+}
 
-/* Floating documentation button */
-.doc-fab { position: fixed; right: 16px; bottom: 16px; z-index: 2; background: rgba(255,255,255,0.6); backdrop-filter: blur(4px); border-radius: 8px; display: none; }
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 12px;
+}
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+.btn-text, .btn-primary, .btn-secondary, button {
+    appearance: none;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-family: "Shadows Into Light", cursive;
+    font-weight: 400;
+    font-size: clamp(16px, 2.2vw, 20px);
+    color: #0f62fe;
+    text-decoration: underline wavy #0f62fe;
+    text-underline-offset: 3px;
+}
+.btn-primary {
+    color: #0f62fe;
+    text-decoration-color: #0f62fe;
+}
+.btn-text.is-active {
+    color: #0b4bd4;
+    text-decoration-color: #0b4bd4;
+}
+.btn-secondary {
+    color: #6aa6ff;
+    text-decoration-color: #6aa6ff;
+}
+.btn-text {
+    color: #7bb3ff;
+    text-decoration-color: #7bb3ff;
+    padding: 6px 8px;
+}
+.btn-text:hover, .btn-primary:hover, .btn-secondary:hover, button:hover {
+    opacity: .85;
+}
 
-.progress { height: 6px; width: 100%; background: #f1f3f7; border-radius: 999px; overflow: hidden; }
-.progress > i { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, #0f62fe, #33a1ff); transition: width 700ms ease; }
 
-.stage { position: relative; height: 45vh; margin-top: 0; }
-.trail { position: absolute; inset: 0 0 0 0; width: 100%; height: 100%; }
-/* Subtle continuous bob for the thinner wave */
-#trail-path-small { transform-box: fill-box; transform-origin: 50% 50%; animation: smallWaveBob 3.6s ease-in-out infinite; }
+.doc-fab {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    z-index: 2;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(4px);
+    border-radius: 8px;
+    display: none;
+}
+
+.progress {
+    height: 6px;
+    width: 100%;
+    background: #f1f3f7;
+    border-radius: 999px;
+    overflow: hidden;
+}
+.progress > i {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #0f62fe, #33a1ff);
+    transition: width 700ms ease;
+}
+
+.stage {
+    position: relative;
+    height: 45vh;
+    margin-top: 0;
+}
+.trail {
+    position: absolute;
+    inset: 0 0 0 0;
+    width: 100%;
+    height: 100%;
+}
+
+#trail-path-small {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    animation: smallWaveBob 3.6s ease-in-out infinite;
+}
 @keyframes smallWaveBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
 
-.ship { position: absolute; left: 0; top: 0; width: min(22vw, 220px); }
-.ship img { width: 100%; height: auto; display: block; filter: drop-shadow(0 6px 8px rgba(0,0,0,.15)); }
+.ship {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: min(22vw, 220px);
+}
+.ship img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 6px 8px rgba(0,0,0,.15));
+}
 
 @media (max-width: 480px) {
     .ship { width: 40vw; }
     .panel { padding: 14px; }
 }
+
+/* site layout after intro */
+.site-layout {
+    display: block;
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20vw;
+    min-width: 220px;
+    height: 100vh;
+    padding: 16px;
+    background: #fff;
+    border-right: 1px solid #eee;
+}
+.site-title {
+    margin: 0 0 6px;
+    font-family: "Shadows Into Light", cursive;
+    font-size: clamp(28px, 4.5vw, 44px);
+}
+.site-subtitle {
+    margin: 0 0 12px;
+    font-family: "Shadows Into Light", cursive;
+    color: #7bb3ff;
+    font-size: clamp(16px, 2.2vw, 20px);
+}
+.sidebar {
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: auto;
+}
+.content {
+    margin-left: 20vw;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* year dropdown */
+.year-select {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 3;
+    background: #ffffffcc;
+    backdrop-filter: blur(4px);
+    border: 1px solid #e6efff;
+    border-radius: 8px;
+    padding: 6px 10px;
+    color: #0f62fe;
+    font-family: "Shadows Into Light", cursive;
+    font-size: 18px;
+    display: none;
+}
+
+/* floating view toggle buttons (bottom-right) */
+.view-fabs {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 3;
+    display: none; /* shown after intro */
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+}
+.view-fabs .btn-text { background: rgba(255,255,255,0.6); backdrop-filter: blur(4px); border-radius: 8px; }
 
 

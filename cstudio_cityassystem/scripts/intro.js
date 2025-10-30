@@ -52,8 +52,8 @@ function finishIntro() {
         intro.style.display = 'none';
         site.style.display = 'block';
         document.body.style.overflow = 'auto';
-        const docBtn = document.querySelector('.doc-fab');
-        if (docBtn) docBtn.style.display = 'inline-block';
+        if (typeof initYearDropdown === 'function') initYearDropdown();
+        if (typeof initViewButtons === 'function') initViewButtons();
     }, 520);
 }
 
