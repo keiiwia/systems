@@ -1,10 +1,9 @@
-// Site-wide utilities loaded after the intro completes
-
 async function initYearDropdown() {
     try {
         const res = await fetch('json/information.json');
         const data = await res.json();
-        const years = Object.keys(data.annual_totals || {}).sort();
+        let years = Object.keys(data.annual_totals || {}).sort();
+        years = years.filter(y => y !== '2017');
         if (!years.length) return;
 
         let select = document.getElementById('year-select');

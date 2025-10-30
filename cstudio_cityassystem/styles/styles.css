@@ -160,11 +160,11 @@ body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing
     position: fixed;
     top: 0;
     left: 0;
-    width: 20vw;
-    min-width: 220px;
+    width: 24vw;
+    min-width: 260px;
     height: 100vh;
-    padding: 16px;
-    background: #fff;
+    padding: 24px;
+    background: rgba(123, 179, 255, 0.08);
     border-right: 1px solid #eee;
 }
 .site-title {
@@ -178,6 +178,18 @@ body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing
     color: #7bb3ff;
     font-size: clamp(16px, 2.2vw, 20px);
 }
+.site-desc {
+    margin: 0 0 16px;
+    color: #2a2a2a;
+    font-size: 15px;
+    line-height: 1.5;
+}
+.site-note {
+    margin: 0 0 16px;
+    color: #6b7280; /* muted */
+    font-size: 13px;
+    line-height: 1.45;
+}
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -189,9 +201,24 @@ body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing
     margin-top: auto;
 }
 .content {
-    margin-left: 20vw;
+    margin-left: 24vw;
     padding: 20px;
     min-height: 100vh;
+}
+
+.home-waves {
+    position: fixed;
+    left: 24vw; /* start where the sidebar ends */
+    right: 0;
+    bottom: 0;
+    height: 140px;
+    z-index: 1; /* behind floating controls */
+    pointer-events: none;
+}
+.home-trail {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 /* year dropdown */
@@ -223,6 +250,21 @@ body { margin: 0; font-family: "Newsreader", Georgia, serif; font-optical-sizing
     gap: 8px;
     align-items: center;
 }
-.view-fabs .btn-text { background: rgba(255,255,255,0.6); backdrop-filter: blur(4px); border-radius: 8px; }
+.view-fabs .btn-text {
+    background: transparent;
+    /* Outline only outside using multi-directional shadows; fill (text color) sits above */
+    -webkit-text-stroke: 0; /* disable stroke fill overlay */
+    text-shadow:
+        0 3px 0 #ffffff,
+        0 -3px 0 #ffffff,
+        3px 0 0 #ffffff,
+        -3px 0 0 #ffffff,
+        3px 3px 0 #ffffff,
+        -3px 3px 0 #ffffff,
+        3px -3px 0 #ffffff,
+        -3px -3px 0 #ffffff,
+        0 0 4px #ffffff,
+        0 0 6px #ffffff; /* larger halo */
+}
 
 
