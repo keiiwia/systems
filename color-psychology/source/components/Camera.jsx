@@ -1,6 +1,6 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 
-function Camera({ onCapture, isActive }) {
+function Camera({ onCapture, isActive, latestPhoto, onCaptureReady }) {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [stream, setStream] = useState(null);
@@ -55,18 +55,25 @@ function Camera({ onCapture, isActive }) {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
 
+    // Mirror the image horizontally to match the video preview
+    context.save();
+    context.translate(canvas.width, 0);
+    context.scale(-1, 1);
     context.drawImage(video, 0, 0);
+    context.restore();
+
+    // Get image data after mirroring
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
     canvas.toBlob((blob) => {
       if (blob) {
         const imageUrl = URL.createObjectURL(blob);
-        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
         onCapture(imageUrl, imageData);
       }
     }, "image/jpeg", 0.95);
   };
 
-  const handleCapture = () => {
+  const handleCapture = useCallback(() => {
     if (countdown !== null) return;
 
     let count = 3;
@@ -82,7 +89,14 @@ function Camera({ onCapture, isActive }) {
         capturePhoto();
       }
     }, 1000);
-  };
+  }, [countdown]);
+
+  // Expose capture handler to parent when camera is active
+  useEffect(() => {
+    if (onCaptureReady && isActive && handleCapture) {
+      onCaptureReady({ handleCapture, countdown });
+    }
+  }, [onCaptureReady, isActive, handleCapture, countdown]);
 
   if (!isActive) {
     return null;
@@ -103,9 +117,6 @@ function Camera({ onCapture, isActive }) {
             )}
           </div>
           <canvas ref={canvasRef} style={{ display: "none" }} />
-          <button onClick={handleCapture} className="btn-capture" disabled={countdown !== null}>
-            {countdown !== null ? `Taking photo in ${countdown}...` : "Take Photo"}
-          </button>
         </>
       )}
     </div>

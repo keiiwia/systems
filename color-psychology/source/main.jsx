@@ -5,10 +5,14 @@ import PhotoStrip from "./components/PhotoStrip.jsx";
 import { extractColorPalette, rgbToHex, isLightColor } from "./utils/colorClustering.js";
 import "./styles.css";
 
-window.addEventListener("load", () => {
-  let root = createRoot(document.getElementById("root"));
+// Initialize React app
+const rootElement = document.getElementById("root");
+if (rootElement) {
+  const root = createRoot(rootElement);
   root.render(<App />);
-});
+} else {
+  console.error("Root element not found");
+}
 
 function App() {
   const [photos, setPhotos] = useState([]);
@@ -17,6 +21,8 @@ function App() {
   const [hoveredColor, setHoveredColor] = useState(null);
   const [hoveredPalette, setHoveredPalette] = useState(null);
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
+  const [captureHandler, setCaptureHandler] = useState(null);
+  const [captureCountdown, setCaptureCountdown] = useState(null);
 
   const colorIndexRef = useRef(0);
 
@@ -44,7 +50,7 @@ function App() {
 
   // update body background color when hoveredColor changes
   useEffect(() => {
-    document.body.style.backgroundColor = hoveredColor || '#667eea';
+    document.body.style.backgroundColor = hoveredColor || '#FAF5E6';
   }, [hoveredColor]);
 
   const handleCapture = async (imageUrl, imageData) => {
@@ -91,11 +97,16 @@ function App() {
     setIsCameraActive((prev) => !prev);
   };
 
+  const handleCaptureReady = ({ handleCapture, countdown }) => {
+    setCaptureHandler(() => handleCapture);
+    setCaptureCountdown(countdown);
+  };
+
   return (
     <div className="app">
       <header className="app-header">
-        <h1>🎨 Color Palette Photobooth</h1>
-        <p>Take photos and discover their color palettes using agglomerative clustering</p>
+        <h1 className="title-part-1">color palette</h1>
+        <h1 className="title-part-2">photobooth</h1>
         {hoveredPalette && hoveredPalette.length > 0 && (
           <p className="color-indicator">
             Color {currentColorIndex + 1} of {hoveredPalette.length}
@@ -105,37 +116,65 @@ function App() {
 
       <main className="app-main">
         <div className="controls-section">
-          <button
-            onClick={toggleCamera}
-            className={`btn-toggle-camera ${isCameraActive ? "active" : ""}`}
-          >
-            {isCameraActive ? "Stop Camera" : "Start Camera"}
-          </button>
+          <div className="instructions-text">
+            {!isCameraActive && (
+              <p>take photos and discover their color palettes, determined through agglomerative clustering</p>
+            )}
+          </div>
+          <div className="camera-controls-buttons">
+            <button
+              onClick={toggleCamera}
+              className={`btn-toggle-camera ${isCameraActive ? "active" : ""}`}
+            >
+              {isCameraActive ? "Stop Camera" : "Start Camera"}
+            </button>
+            {isCameraActive && captureHandler && (
+              <button
+                onClick={captureHandler}
+                className="btn-capture"
+                disabled={captureCountdown !== null}
+              >
+                {captureCountdown !== null ? `Taking photo in ${captureCountdown}...` : "Take Photo"}
+              </button>
+            )}
+          </div>
+          {photos.length > 0 && photos.length < 4 && (
+            <div className="photo-thumbnail-preview">
+              {photos.slice(0, 4).map((photo, index) => (
+                <div key={index} className="photo-thumbnail-item">
+                  <img src={photo.imageUrl} alt={`Photo ${index + 1}`} />
+                </div>
+              ))}
+            </div>
+          )}
           {isProcessing && (
             <div className="processing-indicator">
               Processing color palette...
             </div>
           )}
+          {photos.length === 0 && !isCameraActive && (
+            <div className="welcome-message">
+              <p>click "start camera" to begin taking photos!</p>
+              <p className="hint">each photo will be analyzed to extract its dominant color palette.</p>
+            </div>
+          )}
         </div>
 
         {isCameraActive && (
-          <Camera onCapture={handleCapture} isActive={isCameraActive} />
+          <Camera 
+            onCapture={handleCapture} 
+            isActive={isCameraActive}
+            onCaptureReady={handleCaptureReady}
+          />
         )}
 
-        {photos.length > 0 && (
+        {photos.length >= 4 && (
           <PhotoStrip
             photos={photos}
             onRemovePhoto={handleRemovePhoto}
             onClearAll={handleClearAll}
             onPhotoHover={setHoveredPalette}
           />
-        )}
-
-        {photos.length === 0 && !isCameraActive && (
-          <div className="welcome-message">
-            <p>click "start camera" to begin taking photos!</p>
-            <p className="hint">each photo will be analyzed to extract its dominant color palette.</p>
-          </div>
         )}
       </main>
     </div>
