@@ -57,6 +57,89 @@ function PhotoStrip({ photos, onClearAll, onPhotoHover, clusteringMethod }) {
     }
   }, [clusteringMethod, hoveredIndex, photos]);
 
+  // create and download an image for each photo with its color swatches
+  const handleDownloadPhotostrips = async () => {
+    for (let i = 0; i < photos.length; i++) {
+      const photo = photos[i];
+      const palette = getPalette(photo);
+      
+      if (!palette || palette.length === 0) continue;
+
+      // load the photo image
+      const img = new Image();
+      
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+        img.src = photo.imageUrl;
+      });
+
+      // set up canvas dimensions
+      // photo on left, swatches on right
+      const photoWidth = Math.min(img.width, 800); // max photo width
+      const photoHeight = Math.min(img.height, 1200); // max photo height
+      const scale = Math.min(photoWidth / img.width, photoHeight / img.height);
+      const scaledPhotoWidth = img.width * scale;
+      const scaledPhotoHeight = img.height * scale;
+      
+      const swatchWidth = 150; // width of color swatch column
+      const swatchHeight = scaledPhotoHeight / palette.length; // each swatch gets equal height
+      const padding = 20;
+      
+      const canvas = document.createElement('canvas');
+      canvas.width = scaledPhotoWidth + swatchWidth + padding * 3;
+      canvas.height = scaledPhotoHeight + padding * 2;
+      const ctx = canvas.getContext('2d');
+
+      // background
+      ctx.fillStyle = '#FAF5E6';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // draw photo
+      ctx.drawImage(img, padding, padding, scaledPhotoWidth, scaledPhotoHeight);
+
+      // draw color swatches
+      const swatchX = scaledPhotoWidth + padding * 2;
+      palette.forEach((color, index) => {
+        const swatchY = padding + (swatchHeight * index);
+        const rgbString = `rgb(${color.rgb[0]}, ${color.rgb[1]}, ${color.rgb[2]})`;
+        
+        // draw swatch
+        ctx.fillStyle = rgbString;
+        ctx.fillRect(swatchX, swatchY, swatchWidth, swatchHeight);
+        
+        // draw hex label
+        ctx.fillStyle = color.isLight ? '#000000' : '#FFFFFF';
+        ctx.font = '16px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(
+          color.hex,
+          swatchX + swatchWidth / 2,
+          swatchY + swatchHeight / 2
+        );
+      });
+
+      // download the image
+      await new Promise((resolve) => {
+        canvas.toBlob((blob) => {
+          if (blob) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `photostrip-${i + 1}.png`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+          }
+          // small delay between downloads to avoid browser blocking
+          setTimeout(resolve, 100);
+        }, 'image/png');
+      });
+    }
+  };
+
   return (
     <div className="photo-strip-container">
       <div className="photo-strip-wrapper">
@@ -102,9 +185,14 @@ function PhotoStrip({ photos, onClearAll, onPhotoHover, clusteringMethod }) {
           );
         })()}
       </div>
-      <button onClick={onClearAll} className="btn-clear">
-        Clear All
-      </button>
+      <div className="photo-strip-actions">
+        <button onClick={handleDownloadPhotostrips} className="btn-download">
+          Download Photostrips
+        </button>
+        <button onClick={onClearAll} className="btn-clear">
+          Clear All
+        </button>
+      </div>
     </div>
   );
 }

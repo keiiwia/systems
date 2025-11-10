@@ -377,6 +377,14 @@ body {
 }
 
 
+.photo-strip-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-download,
 .btn-clear {
   background: #8B5A2B;
   color: white;
@@ -391,6 +399,7 @@ body {
   flex-shrink: 0;
 }
 
+.btn-download:hover,
 .btn-clear:hover {
   background: #6B4423;
   border-color: #6B4423;
