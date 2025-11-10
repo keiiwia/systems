@@ -5,6 +5,7 @@ import PhotoStrip from "./components/PhotoStrip.jsx";
 import { extractColorPalette as extractColorPaletteAgglomerative, rgbToHex, isLightColor } from "./utils/colorClustering.js";
 import { extractColorPalette as extractColorPaletteKMeans } from "./utils/kmeansClustering.js";
 import "./styles.css";
+import homeHeroGif from "./ezgif.com-optimize.gif";
 
 // Initialize React app
 const rootElement = document.getElementById("root");
@@ -201,6 +202,13 @@ function App() {
           <>
             <div className="controls-section">
               {isHomeScreen && (
+                <img
+                  src={homeHeroGif}
+                  alt="animated preview of the color palette photobooth experience"
+                  className="home-hero-gif"
+                />
+              )}
+              {isHomeScreen && (
                 <h1 className="home-title">color palette photobooth</h1>
               )}
               {!isHomeScreen && (
@@ -222,7 +230,6 @@ function App() {
                     checked={clusteringMethod === 'kmeans'}
                     onChange={(e) => {
                       const newMethod = e.target.checked ? 'kmeans' : 'agglomerative';
-                      console.log('Toggle clicked! Changing from', clusteringMethod, 'to', newMethod);
                       setClusteringMethod(newMethod);
                     }}
                     className="toggle-input"
@@ -304,7 +311,6 @@ function App() {
                   checked={clusteringMethod === 'kmeans'}
                   onChange={(e) => {
                     const newMethod = e.target.checked ? 'kmeans' : 'agglomerative';
-                    console.log('Toggle clicked! Changing from', clusteringMethod, 'to', newMethod);
                     setClusteringMethod(newMethod);
                   }}
                   className="toggle-input"

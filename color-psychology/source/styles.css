@@ -89,6 +89,15 @@ body {
   letter-spacing: 1px;
 }
 
+.home-hero-gif {
+  width: min(420px, 80%);
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  box-shadow: 0 10px 30px rgba(92, 92, 61, 0.12);
+  margin-bottom: 18px;
+}
+
 .controls-section {
   display: flex;
   flex-direction: column;
