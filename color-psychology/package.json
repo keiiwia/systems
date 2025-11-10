@@ -2,7 +2,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.4",
