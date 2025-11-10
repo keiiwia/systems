@@ -1,7 +1,7 @@
 // using k-means clustering to find the main colors in images
 // groups similar colors together to make a palette
 
-// how far apart are two colors? (euclidean distance)
+// euclidean dist
 function colorDistance(color1, color2) {
   const r = color1[0] - color2[0];
   const g = color1[1] - color2[1];
@@ -44,7 +44,7 @@ function initializeCentroids(pixels, k) {
     }
   }
   
-  // if we don't have enough, just make up some random colors
+  // if != enough colors just make up some random colors
   while (centroids.length < k) {
     centroids.push([
       Math.floor(Math.random() * 256),
@@ -111,7 +111,7 @@ export function extractColorPalette(imageData, numColors = 5, sampleSize = 1000,
       }
       const newCentroid = averageColor(cluster);
       
-      // did the center move much?
+      //if center moves
       if (colorDistance(newCentroid, centroids[index]) > 1) {
         converged = false;
       }
@@ -121,14 +121,14 @@ export function extractColorPalette(imageData, numColors = 5, sampleSize = 1000,
     
     centroids = newCentroids;
     
-    // if nothing moved, we're done
+    // if nothing moves
     if (converged) break;
   }
 
   // sort by brightness
   const palette = centroids
     .sort((a, b) => {
-      // how bright does this color look?
+      //luminosity
       const lumA = 0.299 * a[0] + 0.587 * a[1] + 0.114 * a[2];
       const lumB = 0.299 * b[0] + 0.587 * b[1] + 0.114 * b[2];
       return lumB - lumA;
@@ -137,12 +137,11 @@ export function extractColorPalette(imageData, numColors = 5, sampleSize = 1000,
   return palette;
 }
 
-// turn rgb into hex (like [255, 0, 128] becomes "#ff0080")
 export function rgbToHex(rgb) {
   return `#${rgb.map((c) => c.toString(16).padStart(2, '0')).join('')}`;
 }
 
-// is this color light or dark? (helps us pick text color)
+//color of text
 export function isLightColor(rgb) {
   const luminance = 0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2];
   return luminance > 128;
