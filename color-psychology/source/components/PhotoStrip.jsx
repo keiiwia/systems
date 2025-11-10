@@ -6,7 +6,7 @@ function PhotoStrip({ photos, onClearAll, onPhotoHover, clusteringMethod }) {
   const [paletteHeight, setPaletteHeight] = useState('auto');
   const photoStripRef = useRef(null);
 
-  // make sure the color palette matches the height of the photo strip
+  //responsive
   useEffect(() => {
     if (photoStripRef.current) {
       setPaletteHeight(photoStripRef.current.offsetHeight + 'px');
@@ -187,7 +187,7 @@ function PhotoStrip({ photos, onClearAll, onPhotoHover, clusteringMethod }) {
       </div>
       <div className="photo-strip-actions">
         <button onClick={handleDownloadPhotostrips} className="btn-download">
-          Download Photostrips
+          Save Photostrips
         </button>
         <button onClick={onClearAll} className="btn-clear">
           Clear All
