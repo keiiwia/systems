@@ -1,6 +1,5 @@
 // using agglomerative clustering to pull out the main colors from images
 // basically groups similar colors together until we get a nice palette
-// went with agglomerative instead of k-means because it avoids getting stuck in local minima
 
 // figure out how far apart two colors are (tried a few different ways, euclidean ended up being the simplest)
 function colorDistance(color1, color2) {
@@ -112,12 +111,10 @@ export function extractColorPalette(imageData, numColors = 5, sampleSize = 1000)
   return palette;
 }
 
-// turn an rgb array like [255, 0, 128] into a hex string like "#ff0080"
 export function rgbToHex(rgb) {
   return `#${rgb.map((c) => c.toString(16).padStart(2, '0')).join('')}`;
 }
 
-// figure out if a color is light or dark (so we know what color text to use on it)
 export function isLightColor(rgb) {
   const luminance = 0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2];
   return luminance > 128;
