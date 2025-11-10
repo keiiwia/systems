@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 
-function Camera({ onCapture, isActive, latestPhoto, onCaptureReady }) {
+function Camera({ onCapture, isActive, onCaptureReady }) {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [stream, setStream] = useState(null);

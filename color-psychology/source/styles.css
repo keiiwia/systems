@@ -334,26 +334,6 @@ body {
   right: 20px;
 }
 
-.photo-thumbnail {
-  width: 100%;
-  max-width: 800px;
-  height: 120px;
-  border-radius: 15px;
-  overflow: hidden;
-  background: #FAF5E6;
-  border: 3px solid #8B5A2B;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.photo-thumbnail img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
 
 .video-wrapper {
   position: relative;
