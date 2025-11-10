@@ -1,12 +1,8 @@
-/**
- * agglomerative clustering for color extraction
- * groups similar colors together to create a representative palette
- * agglomerative over kmeans to avoid local minima
- */
+// using agglomerative clustering to pull out the main colors from images
+// basically groups similar colors together until we get a nice palette
+// went with agglomerative instead of k-means because it avoids getting stuck in local minima
 
-/**
- * calculate euclidean distance between two rgb colors; tried with manhattan dist, cosine dist, ultimately ended with euclidean (easiuest)
- */
+// figure out how far apart two colors are (tried a few different ways, euclidean ended up being the simplest)
 function colorDistance(color1, color2) {
   const r = color1[0] - color2[0];
   const g = color1[1] - color2[1];
@@ -14,9 +10,7 @@ function colorDistance(color1, color2) {
   return Math.sqrt(r * r + g * g + b * b);
 }
 
-/**
- * calculate average color of a cluster
- */
+// average out all the colors in a cluster to get the center color
 function averageColor(colors) {
   if (colors.length === 0) return [0, 0, 0];
   
@@ -36,19 +30,13 @@ function averageColor(colors) {
   ];
 }
 
-/**
- * extract dominant colors from an image using agglomerative clustering
- * @param {ImageData} imageData - the image data to analyze
- * @param {number} numColors - number of colors to extract (default: 5)
- * @param {number} sampleSize - number of pixels to sample (default: 1000)
- * @returns {Array<Array<number>>} array of rgb color arrays
- */
+// pull out the main colors from an image using agglomerative clustering
 export function extractColorPalette(imageData, numColors = 5, sampleSize = 1000) {
   const width = imageData.width;
   const height = imageData.height;
   const data = imageData.data;
   
-  // sample pixels from the image
+  // grab a sample of pixels from the image (don't need every single one)
   const pixels = [];
   const step = Math.max(1, Math.floor((width * height) / sampleSize));
   
@@ -56,7 +44,7 @@ export function extractColorPalette(imageData, numColors = 5, sampleSize = 1000)
     const r = data[i];
     const g = data[i + 1];
     const b = data[i + 2];
-    // skip very transparent pixels
+    // ignore pixels that are too transparent
     if (data[i + 3] > 128) {
       pixels.push([r, g, b]);
     }
@@ -66,20 +54,20 @@ export function extractColorPalette(imageData, numColors = 5, sampleSize = 1000)
     return [[255, 255, 255], [0, 0, 0], [128, 128, 128], [200, 200, 200], [50, 50, 50]];
   }
   
-  // initialize clusters - each pixel starts as its own cluster
+  // start with each pixel as its own cluster
   let clusters = pixels.map((pixel, index) => ({
     id: index,
     colors: [pixel],
     centroid: pixel,
   }));
   
-  // agglomerative clustering: merge closest clusters until we have numColors
+  // keep merging the closest clusters together until we have the number we want
   while (clusters.length > numColors) {
     let minDistance = Infinity;
     let mergeIndex1 = -1;
     let mergeIndex2 = -1;
     
-    // find the two closest clusters
+    // find which two clusters are closest to each other
     for (let i = 0; i < clusters.length; i++) {
       for (let j = i + 1; j < clusters.length; j++) {
         const distance = colorDistance(clusters[i].centroid, clusters[j].centroid);
@@ -91,7 +79,7 @@ export function extractColorPalette(imageData, numColors = 5, sampleSize = 1000)
       }
     }
     
-    // merge the two closest clusters
+    // combine those two clusters into one
     if (mergeIndex1 !== -1 && mergeIndex2 !== -1) {
       const mergedColors = [
         ...clusters[mergeIndex1].colors,
@@ -111,11 +99,11 @@ export function extractColorPalette(imageData, numColors = 5, sampleSize = 1000)
     }
   }
   
-  // extract centroids and sort by luminance (brightness)
+  // get the center color from each cluster and sort by brightness
   const palette = clusters
     .map((cluster) => cluster.centroid)
     .sort((a, b) => {
-      // sort by perceived luminance
+      // sort by how bright the color looks to our eyes
       const lumA = 0.299 * a[0] + 0.587 * a[1] + 0.114 * a[2];
       const lumB = 0.299 * b[0] + 0.587 * b[1] + 0.114 * b[2];
       return lumB - lumA;
@@ -124,16 +112,12 @@ export function extractColorPalette(imageData, numColors = 5, sampleSize = 1000)
   return palette;
 }
 
-/**
- * convert rgb array to hex string
- */
+// turn an rgb array like [255, 0, 128] into a hex string like "#ff0080"
 export function rgbToHex(rgb) {
   return `#${rgb.map((c) => c.toString(16).padStart(2, '0')).join('')}`;
 }
 
-/**
- * check if a color is light or dark (for text contrast)
- */
+// figure out if a color is light or dark (so we know what color text to use on it)
 export function isLightColor(rgb) {
   const luminance = 0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2];
   return luminance > 128;

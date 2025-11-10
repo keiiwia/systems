@@ -7,6 +7,7 @@ function Camera({ onCapture, isActive, onCaptureReady }) {
   const [error, setError] = useState(null);
   const [countdown, setCountdown] = useState(null);
 
+  // start or stop the camera when isActive changes
   useEffect(() => {
     if (isActive) {
       startCamera();
@@ -14,6 +15,7 @@ function Camera({ onCapture, isActive, onCaptureReady }) {
       stopCamera();
     }
 
+    // clean up when component unmounts
     return () => {
       stopCamera();
     };
@@ -45,7 +47,7 @@ function Camera({ onCapture, isActive, onCaptureReady }) {
     }
   };
 
-  const capturePhoto = () => {
+  const capturePhoto = useCallback(() => {
     if (!videoRef.current || !canvasRef.current) return;
 
     const video = videoRef.current;
@@ -55,14 +57,14 @@ function Camera({ onCapture, isActive, onCaptureReady }) {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
 
-    // Mirror the image horizontally to match the video preview
+    // flip the image so it matches what you see in the preview
     context.save();
     context.translate(canvas.width, 0);
     context.scale(-1, 1);
     context.drawImage(video, 0, 0);
     context.restore();
 
-    // Get image data after mirroring
+    // grab the pixel data from the flipped image
     const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
     canvas.toBlob((blob) => {
@@ -71,7 +73,7 @@ function Camera({ onCapture, isActive, onCaptureReady }) {
         onCapture(imageUrl, imageData);
       }
     }, "image/jpeg", 0.95);
-  };
+  }, [onCapture]);
 
   const handleCapture = useCallback(() => {
     if (countdown !== null) return;
@@ -89,9 +91,9 @@ function Camera({ onCapture, isActive, onCaptureReady }) {
         capturePhoto();
       }
     }, 1000);
-  }, [countdown]);
+  }, [countdown, capturePhoto]);
 
-  // Expose capture handler to parent when camera is active
+  // let the parent component know when the capture function is ready
   useEffect(() => {
     if (onCaptureReady && isActive && handleCapture) {
       onCaptureReady({ handleCapture, countdown });
