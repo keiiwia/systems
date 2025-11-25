@@ -9,9 +9,9 @@ As humans utilizing science, we have began playing God, fueled by greed and the 
 
 
 ### technical materials and software
-I plan on using both hardware and software together, where the interactions take place in the physical object, but the responses occur in the software/on the computer. I plan on using an Arduino for all circuits, with either light sensors, or simple circuit completion for the signals that will be sent through serial port into the computer. My preliminary idea used NFC tags and a mini NFC tag reader, but I have pivoted away from that idea for this project specifically, and may implement similar ideas in other future projects. 
+I plan on using both hardware and software together, where the interactions take place in the physical object, but the responses occur in the software/on the computer. I plan on using an **Arduino for all circuits**, with either **light sensors, or simple circuit completion** for the signals that will be sent through serial port into the computer. My preliminary idea used NFC tags and a mini NFC tag reader, but I have pivoted away from that idea for this project specifically, and may implement similar ideas in other future projects. 
 
-In terms of software, I will be using Javascript, Processing, Arduino, C++, and possibly Node.js for server/serial control. 
+In terms of software, I will be using **Javascript, Processing, Arduino, C++, and possibly Node.js** for server/serial control. 
 
 Considering the physical aspect of my project, I am refurbishing an old 1999 "Operation" board game for the outer shell, utilizing the plastic pieces that fit into each slot in the board game's character. If there are any missing, I can simply 3-D print them with the right dimensions using filament/PVA, and it will function the same.
 
