@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Exquisite Corpse Online</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <h1>Exquisite Corpse Online</h1>
+        <p>Grab a partner and build a wild character one segment at a time.</p>
+      </header>
+
+      <section class="status-panel">
+        <div id="statusMessage">Connecting...</div>
+        <div id="segmentInfo"></div>
+        <div id="promptClue" class="hidden"></div>
+      </section>
+
+      <section class="canvas-panel">
+        <canvas id="corpseCanvas" width="450" height="600"></canvas>
+        <div class="controls">
+          <label>
+            Brush
+            <input type="color" id="colorPicker" value="#224231" />
+          </label>
+          <label>
+            Size
+            <input type="range" id="sizePicker" min="2" max="20" value="6" />
+          </label>
+          <button id="clearBtn" disabled>Clear segment</button>
+          <button id="submitBtn" disabled>Submit segment</button>
+        </div>
+      </section>
+
+      <section class="final-panel hidden" id="finalPanel">
+        <h2>Final Guess</h2>
+        <p>What do you think the hidden prompt was?</p>
+        <input type="text" id="guessInput" placeholder="Type your guess" />
+        <button id="guessBtn">Submit guess</button>
+        <div id="revealPanel"></div>
+      </section>
+
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/client.js"></script>
+  </body>
+</html>
+
