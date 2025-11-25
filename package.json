@@ -1,0 +1,20 @@
+{
+  "name": "systems",
+  "version": "1.0.0",
+  "description": "## this doc is for assignment 5 -- tech sheet for Core Lab + Studio Final: Future as Systems",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keiiwia/systems.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keiiwia/systems/issues"
+  },
+  "homepage": "https://github.com/keiiwia/systems#readme"
+}
