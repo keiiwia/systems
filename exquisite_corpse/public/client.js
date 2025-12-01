@@ -1,5 +1,6 @@
 const socket = io();
 
+// DOM 
 const statusMessage = document.getElementById('statusMessage');
 const segmentInfo = document.getElementById('segmentInfo');
 const promptClue = document.getElementById('promptClue');
@@ -14,6 +15,7 @@ const guessInput = document.getElementById('guessInput');
 const guessBtn = document.getElementById('guessBtn');
 const revealPanel = document.getElementById('revealPanel');
 
+// canvas state
 let segments = [];
 let segmentZones = [];
 let committedLayers = [];
@@ -25,6 +27,7 @@ let lastPoint = null;
 
 const CANVAS_BG = '#f0f4ff';
 
+// calc vertical zones for each body segment
 function computeZones(count) {
   const height = canvas.height;
   const segmentHeight = height / count;
@@ -60,6 +63,8 @@ function drawZoneGuides() {
   ctx.restore();
 }
 
+// Convert mouse/touch coordinates to canvas coordinates
+// Accounts for CSS scaling vs actual canvas resolution
 function getCanvasPoint(event) {
   const rect = canvas.getBoundingClientRect();
   const scaleX = canvas.width / rect.width;
@@ -75,6 +80,7 @@ function drawStroke(stroke, shouldEmit = false) {
   ctx.save();
   const targetIndex = stroke.segmentIndex ?? currentSegmentIndex;
   const zone = segmentZones[targetIndex];
+  // restrict drawing to current segment zone only
   if (zone) {
     ctx.beginPath();
     ctx.rect(0, zone.y, canvas.width, zone.height);
@@ -88,7 +94,7 @@ function drawStroke(stroke, shouldEmit = false) {
   ctx.moveTo(stroke.from.x, stroke.from.y);
   ctx.lineTo(stroke.to.x, stroke.to.y);
   ctx.stroke();
-  ctx.restore();
+  ctx.restore(); // Restore clipping
 
   if (shouldEmit) {
     socket.emit('stroke', {
@@ -101,10 +107,12 @@ function drawStroke(stroke, shouldEmit = false) {
 function clearActiveZone() {
   if (currentSegmentIndex === null) return;
   const zone = segmentZones[currentSegmentIndex];
+  // clear only the active segment zone
   ctx.clearRect(0, zone.y, canvas.width, zone.height);
   ctx.fillStyle = CANVAS_BG;
   ctx.fillRect(0, zone.y, canvas.width, zone.height);
   drawZoneGuides();
+  // redraw all committed segments except the one being cleared
   committedLayers.forEach((layer, idx) => {
     if (layer && idx !== currentSegmentIndex) {
       drawSegmentImage(idx, layer);
@@ -112,6 +120,8 @@ function clearActiveZone() {
   });
 }
 
+// export current segment as image data URL
+// create offscreen canvas to extract only the segment zone
 function exportSegmentImage() {
   if (currentSegmentIndex === null) return null;
   const zone = segmentZones[currentSegmentIndex];
@@ -119,6 +129,7 @@ function exportSegmentImage() {
   offscreen.width = canvas.width;
   offscreen.height = zone.height;
   const offCtx = offscreen.getContext('2d');
+  // extract pixel data for current zone
   const data = ctx.getImageData(0, zone.y, canvas.width, zone.height);
   offCtx.putImageData(data, 0, 0);
   return offscreen.toDataURL('image/png');
@@ -147,6 +158,7 @@ canvas.addEventListener('pointerdown', (event) => {
   if (!drawingEnabled || currentSegmentIndex === null) return;
   const point = getCanvasPoint(event);
   const zone = segmentZones[currentSegmentIndex];
+  // Only allow drawing within the active segment zone
   if (!zone || point.y < zone.y || point.y > zone.y + zone.height) return;
   isDrawing = true;
   lastPoint = point;
@@ -168,6 +180,7 @@ canvas.addEventListener('pointermove', (event) => {
   lastPoint = point;
 });
 
+// drawing pointer state
 ['pointerup', 'pointerleave', 'pointercancel'].forEach((name) => {
   canvas.addEventListener(name, () => {
     isDrawing = false;
@@ -196,6 +209,7 @@ guessBtn.addEventListener('click', () => {
   socket.emit('promptGuess', { guess });
 });
 
+// socket event handlers
 socket.on('connect', () => {
   mySocketId = socket.id;
 });
@@ -213,6 +227,7 @@ socket.on('game:start', ({ segments: incomingSegments }) => {
   guessBtn.disabled = false;
 
   segments = incomingSegments;
+  // init array to store completed segment images
   committedLayers = new Array(segments.length).fill(null);
   segmentZones = computeZones(segments.length);
   currentSegmentIndex = null;
@@ -260,6 +275,7 @@ socket.on('game:reveal', ({ promptSummary, guesses }) => {
     <p><strong>Actual prompt:</strong> ${promptSummary}</p>
     <p><strong>Your guess:</strong> ${guesses[mySocketId] || '—'}</p>
     <p><strong>Partner guess:</strong> ${
+      // get partner's guess by filtering out current player's ID
       Object.entries(guesses)
         .filter(([id]) => id !== mySocketId)
         .map(([, value]) => value)

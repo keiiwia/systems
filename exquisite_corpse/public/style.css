@@ -1,3 +1,4 @@
+/* Font definitions */
 @font-face {
   font-family: 'PPEditorialOld';
   src: url('/fonts/PPEditorialOld-Regular.otf') format('opentype');
@@ -159,6 +160,7 @@ button:not(:disabled):hover {
   border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
+/* Easel and canvas overlay */
 .easel-container {
   position: relative;
   display: flex;
@@ -180,8 +182,8 @@ button:not(:disabled):hover {
   background: transparent;
   border: none;
   cursor: crosshair;
-  width: 450px;
-  height: 600px;
+  width: 63%;
+  aspect-ratio: 3 / 4;
 }
 
 

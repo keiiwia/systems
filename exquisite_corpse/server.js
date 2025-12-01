@@ -12,9 +12,11 @@ const PORT = process.env.PORT || 4000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Game state
 let waitingSocket = null;
 const games = new Map();
 
+// Pair two players and start a new game
 function createGame(playerA, playerB) {
   const roomId = `room-${playerA.id}-${playerB.id}`;
   const prompt = generatePrompt();
@@ -52,6 +54,7 @@ function createGame(playerA, playerB) {
   sendTurnUpdate(game);
 }
 
+// Notify players whose turn it is
 function sendTurnUpdate(game) {
   if (game.status !== 'in-progress') return;
 
@@ -70,6 +73,7 @@ function sendTurnUpdate(game) {
   });
 }
 
+// Move game to guessing phase
 function concludeGame(game) {
   game.status = 'awaiting-guesses';
   io.to(game.id).emit('game:final', {
@@ -113,6 +117,7 @@ function handleDisconnect(socket) {
   cleanupGame(game);
 }
 
+// Socket.io connection handling
 io.on('connection', (socket) => {
   if (waitingSocket && waitingSocket.connected) {
     createGame(waitingSocket, socket);
