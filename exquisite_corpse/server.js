@@ -12,11 +12,11 @@ const PORT = process.env.PORT || 4000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Game state
+// game state
 let waitingSocket = null;
 const games = new Map();
 
-// Pair two players and start a new game
+// pair two players and start a new game
 function createGame(playerA, playerB) {
   const roomId = `room-${playerA.id}-${playerB.id}`;
   const prompt = generatePrompt();
@@ -187,7 +187,8 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`Exquisite Corpse server listening on http://localhost:${PORT}`);
+  console.log(`Also accessible at http://149.31.163.163:${PORT}`);
 });
 
