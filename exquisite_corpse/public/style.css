@@ -83,9 +83,10 @@ header p {
 
 .canvas-panel {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  flex-direction: row;
+  gap: 2rem;
   align-items: center;
+  justify-content: center;
 }
 
 
@@ -96,9 +97,9 @@ header p {
 
 .controls {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .controls label {
@@ -108,7 +109,7 @@ header p {
 }
 
 button {
-  background: #38bdf8;
+  background: #ff6347;
   color: #224231;
   border: none;
   border-radius: 999px;
@@ -175,5 +176,8 @@ button:not(:disabled):hover {
   background: transparent;
   border: none;
   cursor: crosshair;
+  width: 450px;
+  height: 600px;
 }
+
 
