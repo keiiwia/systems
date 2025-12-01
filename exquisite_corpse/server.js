@@ -117,7 +117,7 @@ function handleDisconnect(socket) {
   cleanupGame(game);
 }
 
-// Socket.io connection handling
+// socket.io connection handling
 io.on('connection', (socket) => {
   if (waitingSocket && waitingSocket.connected) {
     createGame(waitingSocket, socket);
