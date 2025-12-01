@@ -48,7 +48,7 @@ function resetCanvasBase() {
 function drawZoneGuides() {
   if (!segmentZones.length) return;
   ctx.save();
-  ctx.strokeStyle = 'rgba(15, 23, 42, 0.2)';
+  ctx.strokeStyle = 'rgba(34, 66, 49, 0.4)';
   ctx.lineWidth = 2;
   segmentZones.forEach((zone, idx) => {
     if (idx === 0) return;
@@ -73,11 +73,8 @@ function getCanvasPoint(event) {
 function drawStroke(stroke, shouldEmit = false) {
   if (!segmentZones.length) return;
   ctx.save();
-  const targetIndex =
-    stroke.segmentIndex !== undefined && stroke.segmentIndex !== null
-      ? stroke.segmentIndex
-      : currentSegmentIndex;
-  const zone = segmentZones[targetIndex ?? 0];
+  const targetIndex = stroke.segmentIndex ?? currentSegmentIndex;
+  const zone = segmentZones[targetIndex];
   if (zone) {
     ctx.beginPath();
     ctx.rect(0, zone.y, canvas.width, zone.height);
@@ -232,8 +229,8 @@ socket.on('turn:waiting', ({ segmentIndex, segmentLabel, activePlayer }) => {
   }
 });
 
-socket.on('turn:start', ({ segmentLabel, promptClue: clue }) => {
-  promptClue.textContent = `Prompt: ${segmentLabel} should look like ${clue}`;
+socket.on('turn:start', ({ promptClue: clue }) => {
+  promptClue.textContent = `Prompt: ${clue}`;
 });
 
 socket.on('stroke', ({ segmentIndex, stroke }) => {
@@ -252,7 +249,6 @@ socket.on('game:final', ({ promptSummary, segmentsData }) => {
   promptClue.classList.add('hidden');
   segmentInfo.textContent = 'Submit your best guess below.';
   revealPanel.textContent = '';
-  finalPanel.dataset.promptSummary = promptSummary;
   if (Array.isArray(segmentsData) && segmentsData.length) {
     committedLayers = segmentsData;
     resetCanvasBase();

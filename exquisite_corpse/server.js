@@ -43,7 +43,6 @@ function createGame(playerA, playerB) {
   games.set(roomId, game);
 
   io.to(roomId).emit('game:start', {
-    roomId,
     segments: prompt.segments.map((segment, index) => ({
       label: segment.label,
       index,
@@ -67,8 +66,6 @@ function sendTurnUpdate(game) {
   });
 
   io.to(activePlayerId).emit('turn:start', {
-    segmentIndex,
-    segmentLabel: segmentMeta.label,
     promptClue: segmentMeta.clue,
   });
 }
