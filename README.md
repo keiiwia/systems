@@ -1,4 +1,4 @@
-# systems
+# systems--an in-progress ideation
 
 ## this doc is for assignment 5 -- tech sheet for Core Lab + Studio Final: Future as Systems
 
@@ -6,6 +6,8 @@
 My Futures as Systems project revolves around innovation, history, technological advancement, and humans acting as gods. Technology has written our world's history in blood and prejudice, and there are countless bioengineered/technological innovations built on oppression and taking advantage of minority/oppressed groups. It is important to wonder not just if we *can* achieved a scientific breakthrough, but also *if* we should be striving for that in the first place. 
 
 As humans utilizing science, we have began playing God, fueled by greed and the need for power and control. We bend the world to our whims, and we've workshopped natural processes to fit exactly as we see fit.
+
+On the "Operation" board, each piece that is inserted into the character represents an aspect of "godhood" we as humans have forcibly inserted into our lives/lifestyles/environments. As the user plays around with the objects, taking them in and out of the body, just as a surgeon "plays god" with the human body, bending the natural laws set in place by the universe. 
 
 
 ### technical materials and software
@@ -15,10 +17,11 @@ In terms of software, I will be using **Javascript, Processing, Arduino, C++, an
 
 Considering the physical aspect of my project, I am refurbishing an old 1999 "Operation" board game for the outer shell, utilizing the plastic pieces that fit into each slot in the board game's character. If there are any missing, I can simply 3-D print them with the right dimensions using filament/PVA, and it will function the same.
 
+### documentation
+The final submission will include the **"Operation" board**, **a working computer connected to the wifi**, **a website that contains all the visual feedback**, and the **Arduino/boards connected to the computer via serial port**. 
 
-If your project is speculative: What technologies (real or fictional) are you imagining for your project? How might they be documented, and what resources would be available for their use?
-How do these technical choices support your concept?
-What materials are you expecting to include in the final submission of your project?
+Included files are a moodboard/inspiration photos 
+
 If your project has a form other than a website or source code, I'm expecting technical documentation of some sort (e.g. a bill of materials, technical drawings, circuit diagrams, a user manual or so on). What form do you expect your technical documentation to take?
 What topics would be helpful for us to discuss in support of your project? This can be either new topics or any material from earlier in the semester that you'd like to review.
 
